@@ -1,39 +1,50 @@
-import express from "express"
-import cors from "cors"
-import db from "./config/db.js"
-import userRoutes from './routes/userRoutes.js'
-import storageRoutes from './routes/storageRoutes.js'
+import express from "express";
+import cors from "cors";
+import db from "./config/db.js";
+import userRoutes from './routes/userRoutes.js';
+import storageRoutes from './routes/storageRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
-// crear la app
+// Crear la app
 const app = express();
 
-// habilitar cors
-app.use(cors())
+// Habilitar cors
+app.use(cors());
 
-//
-app.use(express.json())
+// Habilitar express.json para parsear JSON
+app.use(express.json());
 
-// coneccion a db
-db.sync({alter: true})
+// Conexión a la base de datos y eliminación de índices duplicados
+db.query("SHOW INDEX FROM users WHERE Key_name LIKE 'email%'")
+.then(([results]) => {
+  const duplicateIndexes = results.filter(index => index.Key_name !== 'email');  // Filtra los índices duplicados
+  const dropIndexPromises = duplicateIndexes.map(index =>
+    db.query(`ALTER TABLE users DROP INDEX ${index.Key_name}`)  // Elimina cada índice duplicado
+  );
+  return Promise.all(dropIndexPromises);  // Espera a que se eliminen todos los índices
+  })
   .then(() => {
-    console.log('Tablas sincronizadas');
-  })
-  .catch((e) => {
-    console.error('Error al sincronizar tablas', e)
-  })
-
-// rutas
-app.use('/users', userRoutes)
-app.use('/storage', storageRoutes)
-
-// configurar puerto y levantar servidor
-const port = process.env.PORT || 3000;
-
-app.listen(port, ()=>{
-    console.log(`Escuchando en el puerto ${port}`)
+    return db.sync();  // Sincroniza la base de datos sin duplicar índices
+    })
+    .then(() => {
+      console.log('Tablas sincronizadas sin índices duplicados');
+    })
+    .catch((e) => {
+      console.error('Error al sincronizar tablas', e);
     });
 
+// Rutas
+app.use('/users', userRoutes);
+app.use('/storage', storageRoutes);
+app.use('/auth', authRoutes);
 
-app.get('/', function(req,res){
-        res.send("hola mundo desde express");
-        })
+// Configurar puerto y levantar servidor
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Escuchando en el puerto ${port}`);
+});
+
+// Ruta principal
+app.get('/', function(req, res) {
+  res.send("Hola mundo desde Express");
+});
