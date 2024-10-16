@@ -1,0 +1,35 @@
+import { DataTypes } from "sequelize";
+import db from "../config/db.js";
+
+const Contrato = db.define('TiposContrato', {
+    codigo: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    nombre: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    descripcion: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    habilitado:{
+        type: DataTypes.BOOLEAN, 
+        allowNull: false,
+        defaultValue: 0  // 0 = activo, 1 = eliminado
+    },
+    usuario: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    usuarioMod: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+},
+{
+    timestamps: true
+});
+
+export default Contrato;

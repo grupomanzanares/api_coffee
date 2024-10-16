@@ -6,9 +6,7 @@ import { apiAuth } from '../middleware/apiauth.js'
 const router = express.Router()
 
 router.get('/', getUsers)
-router.get('/:id', 
-    validateGetUser,
-    getUser)
+router.get('/:id', validateGetUser, getUser)
 router.post('/create', 
     validateCreateUser,
     apiAuth,
