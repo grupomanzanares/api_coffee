@@ -38,13 +38,10 @@ syncDatabase();
 app.use('/users', userRoutes);
 app.use('/storage', storageRoutes);
 app.use('/auth', authRoutes);
-//app.use('/contrato', tipoContratoRoutes);
+app.use('/contrato', tipoContratoRoutes);
 
 
-app.get('/contrato', (req, res) => {
-    console.log("Ruta /contrato fue accedida");
-    res.send('Contenido de la ruta /contrato');
-  });
+
 
 // Configurar puerto y levantar servidor
 const port = process.env.PORT || 3000;

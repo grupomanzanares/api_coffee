@@ -1,9 +1,11 @@
 import { matchedData } from "express-validator";
-import TiposContrato from '../models/TiposContratos.js'
+import TiposContrato from "../models/TiposContrato.js";
 import { handleHttpError } from '../helpers/httperror.js'
+
 
 const getTipoContratos = async (req, res) =>{
     try {
+        console.log("Accediendo a la ruta /contrato es decir todos los tipos de contrato");
         const tiposcontratos = await TiposContrato.findAll({
             where: {habilitado: false}
         });
