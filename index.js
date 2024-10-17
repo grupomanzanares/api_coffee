@@ -7,7 +7,7 @@ import authRoutes from './routes/authRoutes.js';
 import tipoContratoRoutes from './routes/tipoContratoRoutes.js'
 import tipoIdentificacionRoutes from './routes/tipoIdentificacionRoutes.js'
 import tipoRecoleccionRoutes from './routes/tipoRecoleccionRoutes.js'
-
+import bancoRoutes from './routes/bancoRoutes.js'
 
 const app = express();
 
@@ -44,7 +44,7 @@ app.use('/auth', authRoutes);
 app.use('/tiposcontrato', tipoContratoRoutes);
 app.use('/tiposidentificacion', tipoIdentificacionRoutes);
 app.use('/tiposrecoleccion', tipoRecoleccionRoutes);
-
+app.use('/bancos', bancoRoutes);
 
 // Configurar puerto y levantar servidor
 const port = process.env.PORT || 3000;
