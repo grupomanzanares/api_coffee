@@ -4,7 +4,7 @@ import db from "./config/db.js";
 import userRoutes from './routes/userRoutes.js';
 import storageRoutes from './routes/storageRoutes.js';
 import authRoutes from './routes/authRoutes.js';
-import tipoContratoRoutes from './routes/TipoContratoRoutes.js';
+import tipoContratoRoutes from './routes/tipoContratoRoutes.js';
 
 const app = express();
 
