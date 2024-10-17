@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import db from "../config/db.js";
 
-const TiposContrato = db.define('TiposContrato', {
+const TiposIdentificacion = db.define('TiposIdentificacion', {
     codigo: {
         type: DataTypes.STRING,
         allowNull: false
@@ -17,7 +17,7 @@ const TiposContrato = db.define('TiposContrato', {
     habilitado:{
         type: DataTypes.BOOLEAN, 
         allowNull: false,
-        defaultValue: 0   // 1 = activo, 0 = inactivo
+        defaultValue: 0  // 1 = activo, 0 = inactivo
     },
     usuario: {
         type: DataTypes.STRING,
@@ -32,4 +32,4 @@ const TiposContrato = db.define('TiposContrato', {
     timestamps: true
 });
 
-export default TiposContrato;
+export default TiposIdentificacion;

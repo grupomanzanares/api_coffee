@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import db from "../config/db.js";
 
-const TiposContrato = db.define('TiposContrato', {
+const Cosecha = db.define('Cosecha', {
     codigo: {
         type: DataTypes.STRING,
         allowNull: false
@@ -32,4 +32,4 @@ const TiposContrato = db.define('TiposContrato', {
     timestamps: true
 });
 
-export default TiposContrato;
+export default Cosecha;

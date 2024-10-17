@@ -5,6 +5,9 @@ import userRoutes from './routes/userRoutes.js';
 import storageRoutes from './routes/storageRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import tipoContratoRoutes from './routes/tipoContratoRoutes.js'
+import tipoIdentificacionRoutes from './routes/tipoIdentificacionRoutes.js'
+import tipoRecoleccionRoutes from './routes/tipoRecoleccionRoutes.js'
+
 
 const app = express();
 
@@ -38,9 +41,9 @@ syncDatabase();
 app.use('/users', userRoutes);
 app.use('/storage', storageRoutes);
 app.use('/auth', authRoutes);
-app.use('/contrato', tipoContratoRoutes);
-
-
+app.use('/tiposcontrato', tipoContratoRoutes);
+app.use('/tiposidentificacion', tipoIdentificacionRoutes);
+app.use('/tiposrecoleccion', tipoRecoleccionRoutes);
 
 
 // Configurar puerto y levantar servidor
