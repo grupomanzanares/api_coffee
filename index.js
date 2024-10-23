@@ -11,7 +11,7 @@ import bancoRoutes from './routes/bancoRoutes.js'
 import cosechaRoutes from './routes/cosechaRoutes.js'
 const app = express();
 
-app.use(cors());
+app.use(cors());  // Habilita CORS para todas las rutas
 
 // Habilitar express.json para parsear JSON
 app.use(express.json());
