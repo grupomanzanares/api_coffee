@@ -1,11 +1,10 @@
-
-
 import { DataTypes } from "sequelize";
 import db from "../config/db.js";
 
 const Recolector = db.define('Recolector', {
     nit: {
         type: DataTypes.STRING(15),
+        primaryKey: true,
         allowNull: false
     },
     nombre: {

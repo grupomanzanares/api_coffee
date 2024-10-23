@@ -9,6 +9,11 @@ import tipoIdentificacionRoutes from './routes/tipoIdentificacionRoutes.js'
 import tipoRecoleccionRoutes from './routes/tipoRecoleccionRoutes.js'
 import bancoRoutes from './routes/bancoRoutes.js'
 import cosechaRoutes from './routes/cosechaRoutes.js'
+import ccostosRoutes from './routes/ccostosRoutes.js';
+import fincaRourter from './routes/fincaRoutes.js'
+import fincaloteRourter from './routes/fincalotesRoutes.js'
+import recolectorRoutes from './routes/recolectorRoutes.js'
+
 const app = express();
 
 app.use(cors());  // Habilita CORS para todas las rutas
@@ -46,6 +51,10 @@ app.use('/tiposidentificacion', tipoIdentificacionRoutes);
 app.use('/tiposrecoleccion', tipoRecoleccionRoutes);
 app.use('/bancos', bancoRoutes);
 app.use('/cosechas', cosechaRoutes);
+app.use('/ccosto', ccostosRoutes)
+app.use('/finca', fincaRourter)
+app.use('/fincalote', fincaloteRourter)
+app.use('/recolector', recolectorRoutes)
 
 // Configurar puerto y levantar servidor
 const port = process.env.PORT || 3000;

@@ -4,6 +4,7 @@ import db from "../config/db.js";
 const Ccosto = db.define('Ccosto', {
     ccosto: {
         type: DataTypes.STRING(15),
+        primaryKey: true,
         allowNull: false
     },
     descripcion: {

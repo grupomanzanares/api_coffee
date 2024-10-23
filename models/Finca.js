@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import db from "../config/db.js";
+import Ccosto from './Ccosto.js';
 
 const Finca = db.define('Finca', {
     nombre: {
@@ -16,7 +17,11 @@ const Finca = db.define('Finca', {
     },
     ccosto: {
         type: DataTypes.STRING(15),
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: Ccosto,
+            key: 'ccosto'
+        }
     },
     municipio: {
         type: DataTypes.STRING(5),
@@ -43,6 +48,8 @@ const Finca = db.define('Finca', {
 {
     timestamps: true
 });
+
+Finca.belongsTo(Ccosto, { foreignKey: 'ccosto' });
 
 export default Finca;
 

@@ -1,21 +1,27 @@
-
-
 import { DataTypes } from "sequelize";
 import db from "../config/db.js";
+import Ccosto from './Ccosto.js';
+
 
 const FincaLote = db.define('FincaLote', {
 
 	finca: {
 		type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true
     },
     lote: {
         type: DataTypes.STRING(3),
-        allowNull: false
+        allowNull: false,
+        primaryKey: true
     },
 	ccosto: {
         type: DataTypes.STRING(15),
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: Ccosto,
+            key: 'ccosto'
+        }
     },
 
     nombre: {
@@ -53,8 +59,16 @@ const FincaLote = db.define('FincaLote', {
     }
 },
 {
-    timestamps: true
+    timestamps: true,
+    indexes:[
+        {
+            unique: true,
+            fields: ['finca', 'lote']
+        }
+    ]
 });
+
+FincaLote.belongsTo(Ccosto, { foreignKey: 'ccosto' });
 
 export default FincaLote;
 
