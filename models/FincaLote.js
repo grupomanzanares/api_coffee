@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import db from "../config/db.js";
 import Ccosto from './Ccosto.js';
+import Finca from "./Finca.js";
 
 
 const FincaLote = db.define('FincaLote', {
@@ -8,7 +9,11 @@ const FincaLote = db.define('FincaLote', {
 	finca: {
 		type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        references: {
+            model: Finca,
+            key: 'id'
+        }
     },
     lote: {
         type: DataTypes.STRING(3),
@@ -69,6 +74,7 @@ const FincaLote = db.define('FincaLote', {
 });
 
 FincaLote.belongsTo(Ccosto, { foreignKey: 'ccosto' });
+FincaLote.belongsTo(Finca, {foreignKey: 'id'})
 
 export default FincaLote;
 
