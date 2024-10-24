@@ -14,7 +14,7 @@ const Ccosto = db.define('Ccosto', {
     estado:{
         type: DataTypes.STRING(1), 
         allowNull: false,
-        defaultValue: 0   // 1 = activo, 0 = inactivo
+        defaultValue: 1  // 1 = activo, 0 = inactivo
     },
     usuario: {
         type: DataTypes.STRING,

@@ -5,7 +5,7 @@ import { handleHttpError } from '../helpers/httperror.js'
 const getUsers = async (req, res)=>{
     try {
         const users = await User.findAll({
-            where: { estado: false }
+            where: { estado: true }
         });
         res.json(users);
     } catch (error) {
@@ -20,7 +20,7 @@ const getUser = async(req, res) =>{
         const data = await User.findOne({
             where: {
                 id: id,
-                estado: false
+                estado: true
             }
         })
         if (!data) {
@@ -54,8 +54,8 @@ const deleteUser = async(req, res) =>{
         console.log(id)
 
         // Eliminamos el usuario
-        const response = await User.update({estado: true}, {
-            where: { id, estado: false } // Con el id que estraemos eliminamos al usuario
+        const response = await User.update({estado: false}, {
+            where: { id, estado: true } // Con el id que estraemos eliminamos al usuario
         })
 
         if (response === 0) {

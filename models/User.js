@@ -27,7 +27,7 @@ const User = db.define('users', {
     estado: {
         type: DataTypes.BOOLEAN, 
         allowNull: false,
-        defaultValue: 0  // 0 = activo, 1 = eliminado
+        defaultValue: 1  
     }
 }, {
     timestamps: true

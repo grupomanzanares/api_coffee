@@ -30,12 +30,12 @@ const Recolector = db.define('Recolector', {
     rut:{
         type: DataTypes.BOOLEAN, 
         allowNull: false,
-        defaultValue: 0   // 1 = activo, 0 = inactivo
+        defaultValue: 1   // 1 = activo, 0 = inactivo
     },
     habilitado:{
         type: DataTypes.BOOLEAN, 
         allowNull: false,
-        defaultValue: 0   // 1 = activo, 0 = inactivo
+        defaultValue: 1 // 1 = activo, 0 = inactivo
     },
     observacion: {
         type: DataTypes.STRING(100),

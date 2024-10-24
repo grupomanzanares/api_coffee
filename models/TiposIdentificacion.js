@@ -17,7 +17,7 @@ const TiposIdentificacion = db.define('TiposIdentificacion', {
     habilitado:{
         type: DataTypes.BOOLEAN, 
         allowNull: false,
-        defaultValue: 0  // 1 = activo, 0 = inactivo
+        defaultValue: 1  // 1 = activo, 0 = inactivo
     },
     usuario: {
         type: DataTypes.STRING,

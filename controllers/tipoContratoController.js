@@ -7,7 +7,7 @@ const getTipoContratos = async (req, res) =>{
     try {
         console.log("Accediendo a la ruta /contrato es decir todos los tipos de contrato");
         const tiposcontratos = await TiposContrato.findAll({
-            where: {habilitado: false}
+            where: {habilitado: true}
         });
         res.json(tiposcontratos)
     }catch{
@@ -23,7 +23,7 @@ const getTipoContrato = async(req, res) => {
         const data = await TiposContrato.findOne({
             where: {
                 id: id,
-                habilitado: false
+                habilitado: true
             }
         })
         if (!data){
@@ -56,8 +56,8 @@ const deleteTipoContrato = async(req, res) =>{
         const { id } = req.params
         console.log(id)
 
-        const response = await TiposContrato.update({habilitado: true}, {
-            where: {id, habilitado: false}
+        const response = await TiposContrato.update({habilitado: false}, {
+            where: {id, habilitado: true}
         })
 
         if(response === 0) {
@@ -65,8 +65,39 @@ const deleteTipoContrato = async(req, res) =>{
                 message: 'Contrato no encontrado y/o eliminado'
             })
         }
+
+        res.status(200).json({
+            message: 'Contrato eliminado con exito'
+        })
     } catch (error) {
         handleHttpError(res, 'No se pudo eliminar el contrato, intenta otra vez')
+        console.error(error)
+    }
+}
+
+const updateTipoContratos = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const body = req.body
+        
+        const response = await TiposContrato.update(body, {
+            where: { id }
+        })
+
+        if (response[0] === 0) {
+            return res.status(404).json({
+                message: 'Contrato no encontrado o inactivo'
+            })
+        }
+
+        const updateTipoContratos = await TiposContrato.findByPk(id)
+
+        res.status(200).json({
+            message: 'Contrato actualizado correctamente',
+            data: updateTipoContratos
+        }); 
+    } catch (error) {
+        handleHttpError(res, 'No se pudo actualizar el Contrato, intenta de nuevo')
         console.error(error)
     }
 }
@@ -75,5 +106,6 @@ export{
     getTipoContrato,
     getTipoContratos,
     createTipoContrato,
-    deleteTipoContrato
+    deleteTipoContrato,
+    updateTipoContratos
 }

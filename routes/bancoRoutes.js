@@ -1,14 +1,15 @@
 import express from 'express';
-import { getBanco, getBancos, createBanco, deleteBanco } from '../controllers/bancoController.js';
+import { getBanco, getBancos, createBanco, deleteBanco, updateBancos } from '../controllers/bancoController.js';
 import { apiAuth } from '../middleware/apiauth.js'
-//import { validateCreateTipoContrato, validateGetTipoContrato } from '../validators/tipoContrato.js'
+import { validateCreateBanco, validateGetBanco } from '../validators/banco.js';
 
 const router = express.Router();
 
 router.get('/', getBancos)
-//router.get('/:id', validateGetTipoContrato, getTipoContrato)
-//router.post('/create', validateCreateTipoContrato, apiAuth, createTipoContrato)
-//router.delete('/delete/:id', deleteTipoContrato)
+router.get('/:id', validateGetBanco, getBanco)
+router.post('/create', validateCreateBanco, apiAuth, createBanco)
+router.put('/:id', validateGetBanco, updateBancos)
+router.delete('/delete/:id',  deleteBanco)
 
 
 export default router

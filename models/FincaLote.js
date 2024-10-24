@@ -52,7 +52,7 @@ const FincaLote = db.define('FincaLote', {
     habilitado:{
         type: DataTypes.BOOLEAN, 
         allowNull: false,
-        defaultValue: 0   // 1 = activo, 0 = inactivo
+        defaultValue: 1  // 1 = activo, 0 = inactivo
     },
     usuario: {
         type: DataTypes.STRING,
@@ -74,7 +74,7 @@ const FincaLote = db.define('FincaLote', {
 });
 
 FincaLote.belongsTo(Ccosto, { foreignKey: 'ccosto' });
-FincaLote.belongsTo(Finca, {foreignKey: 'id'})
+// FincaLote.belongsTo(Finca, {foreignKey: 'id'})
 
 export default FincaLote;
 
