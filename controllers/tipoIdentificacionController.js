@@ -54,8 +54,8 @@ const deleteTipoIdentificacion = async(req, res) =>{
         const { id } = req.params
         console.log(id)
 
-        const response = await TiposIdentificacion.update({habilitado: true}, {
-            where: {id, habilitado: false}
+        const response = await TiposIdentificacion.update({habilitado: false}, {
+            where: {id, habilitado: true}
         })
 
         if(response === 0) {
@@ -63,9 +63,39 @@ const deleteTipoIdentificacion = async(req, res) =>{
                 message: 'TiposIdentificacion no encontrado y/o inactivo'
             })
         }
+
+        res.status(200).json({
+            message: 'Tipo de identificacion eliminado con exito'
+        })
     } catch (error) {
         handleHttpError(res, 'No se pudo eliminar el TiposIdentificacion, intenta otra vez')
         console.error(error)
+    }
+}
+
+const updateTipoIdentificacion = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const body = req.body
+
+        const response = await TiposIdentificacion.update(body, {
+            where: { id }
+        })
+
+        if (response === 0) {
+            return res.status(404).json({
+                message: 'Tipo de identificacion no encontrado o sin cambios'
+            })
+        }
+
+        const updateTipoIdentificacion = await TiposIdentificacion.findByPk(id)
+
+        res.status(200).json({
+            message: 'Tipo de identificacion actualizado correctamente',
+            data: updateTipoIdentificacion
+        })
+    } catch (error) {
+        handleHttpError(res, 'No se pudo actualiza el Tipo de identificacion, Intenta de nuevo')
     }
 }
 
@@ -73,5 +103,6 @@ export{
     getTipoIdentificacion,
     getTipoIdentificaciones,
     createTipoIdentificacion,
-    deleteTipoIdentificacion
+    deleteTipoIdentificacion,
+    updateTipoIdentificacion
 }

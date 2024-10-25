@@ -54,8 +54,8 @@ const deleteTipoRecoleccion = async(req, res) =>{
         const { id } = req.params
         console.log(id)
 
-        const response = await TiposRecoleccion.update({habilitado: true}, {
-            where: {id, habilitado: false}
+        const response = await TiposRecoleccion.update({habilitado: false}, {
+            where: {id, habilitado: true}
         })
 
         if(response === 0) {
@@ -63,8 +63,40 @@ const deleteTipoRecoleccion = async(req, res) =>{
                 message: 'TiposRecoleccion no encontrado y/o inactivo'
             })
         }
+
+        res.status(200).json({
+            message: 'Tipo de recoleccion eliminado con exito'
+        })
     } catch (error) {
         handleHttpError(res, 'No se pudo eliminar el TiposRecoleccion, intenta otra vez')
+        console.error(error)
+    }
+}
+
+const updateTipoRecoleccion = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const body = req.body
+
+        const response = await TiposRecoleccion.update(body, {
+            where: { id }
+        })
+
+        if (response === 0) {
+            return res.status(404).json({
+                message: 'Tipo de recoleccion no encontrada o sin cambios'
+            })
+        }
+
+        const updateTipoRecoleccion = await TiposRecoleccion.findByPk(id);
+
+        res.status(200).json({
+            message: 'Tipo de recoleccion atualizado con exito',
+            data: updateTipoRecoleccion
+        })
+
+    } catch (error) {
+        handleHttpError(res, 'No se pudo actualizar el tipo de recoleccion, intenta de nuevo')
         console.error(error)
     }
 }
@@ -73,5 +105,6 @@ export{
     getTipoRecoleccion,
     getTiposRecolecciones,
     createTipoRecoleccion,
-    deleteTipoRecoleccion
+    deleteTipoRecoleccion,
+    updateTipoRecoleccion
 }

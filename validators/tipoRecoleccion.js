@@ -1,6 +1,6 @@
 import { body, check, validationResult } from "express-validator";
 
-const validateCreateTipoIdentificacion = [
+const validateCreateTipoRecoleccion = [
     body('codigo').exists().notEmpty(),
     body('nombre').exists().notEmpty(),
     body('descripcion').exists().notEmpty(),
@@ -18,7 +18,7 @@ const validateCreateTipoIdentificacion = [
     }
 ];
 
-const validateGetTipoIdentificacion = [
+const validateGetTipoRecoleccion = [
     check('id').exists().notEmpty(),
 
     (req, res, next) =>{
@@ -33,6 +33,6 @@ const validateGetTipoIdentificacion = [
 ];
 
 export {
-    validateCreateTipoIdentificacion,
-    validateGetTipoIdentificacion
+    validateCreateTipoRecoleccion,
+    validateGetTipoRecoleccion
 }
