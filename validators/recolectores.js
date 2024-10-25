@@ -10,6 +10,9 @@ const validateCreateRecolector = [
     body('rut').exists().notEmpty(),
     body('observacion').exists().notEmpty(),
     body('cuentaBancaria').exists().notEmpty().isLength({min: 8, max:10}),
+    body('banco').exists().notEmpty(),
+    body('tipoContrato').exists().notEmpty(),
+    body('tipoIdentificacion').exists().notEmpty(),
     body('usuario').exists().notEmpty(),
     body('usuarioMod').exists().notEmpty(),
 

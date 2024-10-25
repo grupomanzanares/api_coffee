@@ -1,5 +1,8 @@
 import { DataTypes } from "sequelize";
 import db from "../config/db.js";
+import Banco from "./Banco.js";
+import TiposContrato from "./TiposContrato.js";
+import TiposIdentificacion from "./TiposIdentificacion.js";
 
 const Recolector = db.define('Recolector', {
     nit: {
@@ -57,6 +60,10 @@ const Recolector = db.define('Recolector', {
 {
     timestamps: true
 });
+
+Recolector.belongsTo(Banco, { foreignKey: 'banco' })
+Recolector.belongsTo(TiposContrato, { foreignKey: 'tipoContrato' })
+Recolector.belongsTo(TiposIdentificacion, { foreignKey: 'tipoIdentificacion' })
 
 export default Recolector;
 

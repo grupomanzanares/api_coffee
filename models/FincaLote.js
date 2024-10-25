@@ -28,7 +28,6 @@ const FincaLote = db.define('FincaLote', {
             key: 'ccosto'
         }
     },
-
     nombre: {
         type: DataTypes.STRING(30),
         allowNull: false
