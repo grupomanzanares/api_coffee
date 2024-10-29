@@ -12,6 +12,7 @@ import cosechaRoutes from './routes/cosechaRoutes.js'
 import ccostosRoutes from './routes/ccostosRoutes.js';
 import fincaRourter from './routes/fincaRoutes.js'
 import fincaloteRourter from './routes/fincalotesRoutes.js'
+import variedadRoutes from './routes/variedadRoutes.js'
 import recolectorRoutes from './routes/recolectorRoutes.js'
 
 const app = express();
@@ -55,6 +56,7 @@ app.use('/ccosto', ccostosRoutes)
 app.use('/finca', fincaRourter)
 app.use('/fincalote', fincaloteRourter)
 app.use('/recolector', recolectorRoutes)
+app.use('/variedad', variedadRoutes)
 
 // Configurar puerto y levantar servidor
 const port = process.env.PORT || 3000;
@@ -64,5 +66,5 @@ app.listen(port, () => {
 
 // Ruta principal
 app.get('/', (req, res) => {
-  res.send("Hola mundo desde Express");
+  res.send("Hola mundo desde Silicon Valey");
 });
