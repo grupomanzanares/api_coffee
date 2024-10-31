@@ -16,19 +16,19 @@ const Recolector = db.define('Recolector', {
     },
     nombre1: {
         type: DataTypes.STRING(60),
-        allowNull: false
+        allowNull: true
     },
     nombre2: {
         type: DataTypes.STRING(60),
-        allowNull: false
+        allowNull: true
     },
     apellido1: {
         type: DataTypes.STRING(60),
-        allowNull: false
+        allowNull: true
     },
     apellido2: {
         type: DataTypes.STRING(60),
-        allowNull: false
+        allowNull: true
     },
     rut:{
         type: DataTypes.BOOLEAN, 
@@ -42,19 +42,19 @@ const Recolector = db.define('Recolector', {
     },
     observacion: {
         type: DataTypes.STRING(100),
-        allowNull: false
+        allowNull: true
     },
     cuentaBancaria: {
         type: DataTypes.STRING(45),
-        allowNull: false
+        allowNull: true
     },
     usuario: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     usuarioMod: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     }
 },
 {
