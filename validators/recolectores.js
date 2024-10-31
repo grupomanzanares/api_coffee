@@ -3,18 +3,11 @@ import { body, check, validationResult } from "express-validator";
 const validateCreateRecolector = [
     body('nit').exists().notEmpty().isLength({min: 6, max: 10}),
     body('nombre').exists().notEmpty(),
-    body('nombre1').exists().notEmpty(),
-    body('nombre2').exists().notEmpty(),
-    body('apellido1').exists().notEmpty(),
-    body('apellido2').exists().notEmpty(),
     body('rut').exists().notEmpty(),
-    body('observacion').exists().notEmpty(),
-    body('cuentaBancaria').exists().notEmpty().isLength({min: 8, max:10}),
     body('banco').exists().notEmpty(),
     body('tipoContrato').exists().notEmpty(),
     body('tipoIdentificacion').exists().notEmpty(),
-    body('usuario').exists().notEmpty(),
-    body('usuarioMod').exists().notEmpty(),
+
 
     (req, res, next) => {
         try {

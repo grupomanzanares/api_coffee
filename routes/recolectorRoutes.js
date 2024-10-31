@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.get('/', getRecolectores)
 router.get('/:nit', validateGetRecolector, getRecolector)
-router.post('/create', validateCreateRecolector, apiAuth, createRecolector)
+router.post('/create',  validateCreateRecolector, createRecolector)
 router.put('/update/:nit', updateRecolector)
 router.delete('/delete/:nit', deleteRecolector)
 
