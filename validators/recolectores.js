@@ -14,8 +14,7 @@ const validateCreateRecolector = [
             validationResult(req).throw()
             return next()
         } catch (error) {
-            res.status(403)
-            res.send({errors: error.array()})
+            res.status(403).send({ errors: error.array() });
         }
     }
 ];

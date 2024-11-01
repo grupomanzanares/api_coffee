@@ -40,6 +40,7 @@ const getRecolector = async (req, res) => {
 const createRecolector = async (req, res) => {
     try {
         const body = matchedData(req)
+        console.log('Datos validados para creación:', body); // Para depuración
         const response = await Recolector.create(body)
         res.status(201).send(response); // 201 indica creación exitosa
     } catch (error) {
