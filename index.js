@@ -35,9 +35,9 @@ async function syncDatabase() {
     
     await Promise.all(dropIndexPromises);
     await db.sync({ alter: true });  // Asegúrate de tener las tablas actualizadas
-    console.log('Tablas sincronizadas sin índices duplicados');
+    //console.log('Tablas sincronizadas sin índices duplicados');
   } catch (e) {
-    console.error('Error al sincronizar tablas:', e);
+    //console.error('Error al sincronizar tablas:', e);
   }
 }
 

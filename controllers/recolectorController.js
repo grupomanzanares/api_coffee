@@ -41,10 +41,10 @@ const createRecolector = async (req, res) => {
     try {
         const body = matchedData(req)
         const response = await Recolector.create(body)
-        res.send(response)
+        res.status(201).send(response); // 201 indica creación exitosa
     } catch (error) {
-        console.log(error)
-        handleHttpError(res, 'No se pudo crear al Recolector, Intenta nuevamente')
+        const statusCode = error.name === 'ValidationError' ? 400 : 500;
+        handleHttpError(res, 'No se pudo crear al Recolector, intenta nuevamente', statusCode);
     }
 }
 
