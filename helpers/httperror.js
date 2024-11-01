@@ -8,7 +8,3 @@ const handleHttpError = (res, message = 'Error ...', code = 403) => {
 export{
     handleHttpError
 }
-
-export{
-    handleHttpError
-}
