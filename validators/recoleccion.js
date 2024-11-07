@@ -1,13 +1,14 @@
 import { body, check, validationResult } from "express-validator";
 
 const validateCreateRecoleccion = [
-    body('prefijo').exists().isEmpty(),
-    body('id').exists().isEmpty(),
-    body('fecha').exists().isEmpty(),
-    body('jornal').exists().isEmpty(),
-    body('kg').exists().isEmpty(),
-    body('precio').exists().isEmpty(),
-    body('total').exists().isEmpty(),
+    body('prefijo').exists().notEmpty(),
+    body('id').exists().notEmpty(),
+    body('fecha').exists().notEmpty().isDate({ format: 'YYYY-MM-DD' }),
+    body('jornal').exists().notEmpty(),
+    body('kg').exists().notEmpty(),
+    body('precio').exists().notEmpty(),
+    body('total').exists().notEmpty(),
+    body('maquina').exists().notEmpty(),
 
     (req, res, next) => {
         try {
@@ -25,7 +26,7 @@ const validateGetRecoleccion = [
 
     (req, res, next) => {
         const errors = validationResult(req);
-        if (!errors.isEmpty()) {
+        if (!errors.notEmpty()) {
             return res.status(403).json({ errors: errors.array() });
         }
         next();

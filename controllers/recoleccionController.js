@@ -1,7 +1,6 @@
 import { body, matchedData } from 'express-validator'
 import { handleHttpError } from '../helpers/httperror.js'
 import Recoleccion from '../models/Recoleccion.js'
-import Cosecha from '../models/Cosecha.js'
 
 const getRecolecciones = async (req, res) => {
     try {
@@ -39,13 +38,15 @@ const getRecoleccion = async (req, res) => {
 
 const createRecoleccion = async (req, res) => {
     try {
-        const body = matchedData(req)
+        // const body = matchedData(req)
+        const body = req.body
         console.log('Datos validados para creación:', body); // Para depuración
         const response = await Recoleccion.create(body)
         res.status(201).send(response); // 201 indica creación exitosa
     } catch (error) {
         const statusCode = error.name === 'ValidationError' ? 400 : 500;
         handleHttpError(res, 'No se pudo crear la recoleccion, intenta nuevamente', statusCode);
+        console.error(error)
     }
 }
 
