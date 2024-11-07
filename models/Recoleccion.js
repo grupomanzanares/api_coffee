@@ -15,7 +15,7 @@ const Recoleccion = db.define('Recoleccion', {
         primaryKey: true, // Este campo es parte de la clave primaria
     },
 
-    movid: {
+    id: {
         type: DataTypes.DECIMAL(16, 0),   
         allowNull: false,
         primaryKey: true, // Este campo es parte de la clave primaria
@@ -57,7 +57,6 @@ const Recoleccion = db.define('Recoleccion', {
         allowNull: true
     },
     
-
     habilitado:{
         type: DataTypes.BOOLEAN, 
         defaultValue: 1  
@@ -73,7 +72,6 @@ const Recoleccion = db.define('Recoleccion', {
         allowNull: true,
     },
 
-    
     ordenPago:{
         type: DataTypes.BOOLEAN, 
         allowNull: true,
