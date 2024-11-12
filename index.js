@@ -15,6 +15,8 @@ import fincaloteRourter from './routes/fincalotesRoutes.js'
 import variedadRoutes from './routes/variedadRoutes.js'
 import recolectorRoutes from './routes/recolectorRoutes.js'
 import recoleccionRoutes from './routes/recoleccionRoutes.js'
+import consecutivoRoutes from './routes/consecutivoRoutes.js'
+
 
 
 const app = express();
@@ -60,6 +62,7 @@ app.use('/fincalote', fincaloteRourter)
 app.use('/recolector', recolectorRoutes)
 app.use('/variedad', variedadRoutes)
 app.use('/recoleccion', recoleccionRoutes)
+app.use('/consecutivo', consecutivoRoutes)
 
 // Configurar puerto y levantar servidor
 const port = process.env.PORT || 3000;
