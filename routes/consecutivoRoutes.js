@@ -1,5 +1,5 @@
 import express from 'express';
-import { createRecoleccion, deleteRecoleccion, getRecoleccion, getRecolecciones, updateRecoleccion } from '../controllers/consecutivoController.js';
+import { createConsecutivo,  getConsecutivo, getConsecutivos, updateConsecutivo } from '../controllers/consecutivoController.js';
 import { validateCreateRecoleccion, validateGetRecoleccion } from '../validators/recoleccion.js';
 
 const router = express.Router()

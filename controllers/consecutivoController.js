@@ -81,5 +81,6 @@ export {
     getConsecutivos,
     getConsecutivo,
     createConsecutivo,
+    updateConsecutivo
 
 };
