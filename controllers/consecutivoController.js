@@ -76,6 +76,7 @@ const  updateConsecutivo = async (req, res, next) => {
     }
 }    
 
+//c
 
 export {
     getConsecutivos,
