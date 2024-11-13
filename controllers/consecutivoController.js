@@ -18,9 +18,9 @@ const getConsecutivo = async (req, res) => {
     try {
         req = matchedData(req)
         console.log(req)
-        const { id } = req
+        const { prefijo } = req
         const data = await Consecutivo.findOne({
-            where: {id: id, habilitado: true}
+            where: {prefijo: prefijo, habilitado: true}
         })
         if (!data){
             return res.status(404).json({
@@ -50,25 +50,25 @@ const createConsecutivo = async (req, res) => {
 
 const  updateConsecutivo = async (req, res, next) => {
     try {
-        const { id } = req.params
+        const { prefijo } = req.params
         
         const body = req.body
-        console.log("Consecutivo", id)
+        console.log("Consecutivo", prefijo)
 
         const response = await Consecutivo.update(body, {
-            where: { id }
+            where: { prefijo }
         })
 
         if (response === 0) {
             return res.status(404).json({
-                message: 'Cosecha no encontrada o sin cambios'
+                message: 'Prefijo no encontradaoo sin cambios'
             })
         }
 
-        const updateRegistro = await Consecutivo.findByPk(id)
+        const updateRegistro = await Consecutivo.findByPk(prefijo)
 
         res.status(200).json({
-            message: 'Cosecha actualizada correctamente',
+            message: 'Prefijo actualizado correctamente',
             data: updateRegistro
         })
     } catch (error) {
