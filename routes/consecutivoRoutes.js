@@ -5,7 +5,7 @@ import { validateCreateRecoleccion, validateGetRecoleccion } from '../validators
 const router = express.Router()
 
 router.get('/', getConsecutivos)
-router.get('/:prefijo', validateGetRecoleccion, getConsecutivo)
+router.get('/:prefijo', getConsecutivo)
 router.post('/create', validateCreateRecoleccion, createConsecutivo)
 router.put('/update/:prefijo', updateConsecutivo)
 
