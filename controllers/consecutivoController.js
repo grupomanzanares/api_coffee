@@ -16,10 +16,10 @@ const getConsecutivos = async (req, res) => {
 
 const getConsecutivo = async (req, res) => {
     try {
-        req = matchedData(req)
-        const { prefijo } = req
+        
+        const { prefijo } = matchedData(req)
         const data = await Consecutivo.findOne({
-            where: {prefijo: prefijo, habilitado: true}
+            where: { prefijo: prefijo, habilitado: true }
         })
         if (!data){
             return res.status(404).json({
@@ -28,6 +28,7 @@ const getConsecutivo = async (req, res) => {
         }
         res.status(200).json(data)
         console.log('Consecutivo encontrado:', data);
+        
     } catch (error) {
         handleHttpError(res, 'Error al traer Consecutivo')
         console.error(error)
