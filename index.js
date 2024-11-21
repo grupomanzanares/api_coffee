@@ -16,7 +16,7 @@ import variedadRoutes from './routes/variedadRoutes.js'
 import recolectorRoutes from './routes/recolectorRoutes.js'
 import recoleccionRoutes from './routes/recoleccionRoutes.js'
 import consecutivoRoutes from './routes/consecutivoRoutes.js'
-
+import maquinaRoutes from './routes/maquinaRoutes.js'
 
 
 const app = express();
@@ -63,6 +63,7 @@ app.use('/recolector', recolectorRoutes)
 app.use('/variedad', variedadRoutes)
 app.use('/recoleccion', recoleccionRoutes)
 app.use('/consecutivo', consecutivoRoutes)
+app.use('/maquina', maquinaRoutes)
 
 // Configurar puerto y levantar servidor
 const port = process.env.PORT || 3000;
