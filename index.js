@@ -1,6 +1,10 @@
 import express from "express";
 import cors from "cors";
 import db from "./config/db.js";
+
+/***
+ * Rutas 
+ */
 import userRoutes from './routes/userRoutes.js';
 import storageRoutes from './routes/storageRoutes.js';
 import authRoutes from './routes/authRoutes.js';
@@ -18,15 +22,18 @@ import recoleccionRoutes from './routes/recoleccionRoutes.js'
 import consecutivoRoutes from './routes/consecutivoRoutes.js'
 import maquinaRoutes from './routes/maquinaRoutes.js'
 
-
+/*** Crear app   */
 const app = express();
 
-app.use(cors());  // Habilita CORS para todas las rutas
+/*** Habilitar CORS para todas las rutas   */
+app.use(cors());  
 
 // Habilitar express.json para parsear JSON
+/*** Conexión a la base de datos y eliminación de índices duplicados  */
 app.use(express.json());
 
-// Conexión a la base de datos y eliminación de índices duplicados
+
+/*** Conexión a la base de datos y eliminación de índices duplicados  */
 async function syncDatabase() {
   try {
     const [results] = await db.query("SHOW INDEX FROM users WHERE Key_name LIKE 'email%'");
@@ -41,13 +48,12 @@ async function syncDatabase() {
     await db.sync({ alter: true });  // Asegúrate de tener las tablas actualizadas
     //console.log('Tablas sincronizadas sin índices duplicados');
   } catch (e) {
-   console.error('Error al sincronizar tablas:', e);
+    console.error('Error al sincronizar tablas:', e);
   }
 }
-
 syncDatabase();
 
-// Rutas
+/*** Rutas  */
 app.use('/users', userRoutes);
 app.use('/storage', storageRoutes);
 app.use('/auth', authRoutes);
@@ -65,13 +71,17 @@ app.use('/recoleccion', recoleccionRoutes)
 app.use('/consecutivo', consecutivoRoutes)
 app.use('/maquina', maquinaRoutes)
 
-// Configurar puerto y levantar servidor
+/***
+ * Configurar puerto y levantar servidor
+ */  
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Escuchando en el puerto ${port}`);
 });
 
-// Ruta principal
+/***
+ * Ruta principal
+ */
 app.get('/', (req, res) => {
   res.send("Hola mundo desde Silicon Valey");
 });
