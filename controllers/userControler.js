@@ -5,7 +5,7 @@ import { handleHttpError } from '../helpers/httperror.js'
 const getUsers = async (req, res)=>{
     try {
         const users = await User.findAll({
-            where: { estado: true }
+            where: { estate: true }
         });
         res.json(users);
     } catch (error) {

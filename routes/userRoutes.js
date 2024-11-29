@@ -1,4 +1,5 @@
 import express from "express"
+
 import { validateCreateUser, validateGetUser } from '../validators/user.js'
 import { getUsers, getUser, createUser, deleteUser, updateUser } from "../controllers/userControler.js";
 import { apiAuth } from '../middleware/apiauth.js'
