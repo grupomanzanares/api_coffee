@@ -1,5 +1,6 @@
 
 import  jwt  from "jsonwebtoken";
+import { handleHttpError } from '../../helpers/httperror.js';
 
 const apiAuth = (req, res, next) =>{
     const authHeader = req.headers.authorization;
@@ -20,8 +21,13 @@ const apiAuth = (req, res, next) =>{
 
         next();
     } catch (error) {
-        res.status('401')
-        res.send({error: 'Token inválido o expirado...'})
+        if (error.name === 'TokenExpiredError') {
+            return handleHttpError(res, 'El token ha expirado.', 401);
+        } else if (error.name === 'JsonWebTokenError') {
+            return handleHttpError(res, 'Token inválido.', 401);
+        } else {
+            return handleHttpError(res, 'Error al procesar el token.', 500);
+        }
     }
 }
 
