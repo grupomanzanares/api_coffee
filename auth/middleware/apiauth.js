@@ -1,17 +1,20 @@
 
+import  jwt  from "jsonwebtoken";
 
 const apiAuth = (req, res, next) =>{
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).send({ error: 'No se proporcionó un token.' });
+    }
+    const token = authHeader.split(' ')[1];
     try {
-        const { token } =  req.headers
-        if (token === 'apikey-valido-1234') {
-            next()
-        }else{
-            res.status('401')
-            res.send({error: 'No estas autorizado...'})
-        }
+        const decoded = jwt.verify(token,  process.env.JWT_SECRET) 
+        req.user = decoded; // Adjunta datos decodificados al request
+        next();
     } catch (error) {
         res.status('401')
-        res.send({error: 'Ocurrio un error en el header...'})
+        res.send({error: 'Token inválido o expirado...'})
     }
 }
 

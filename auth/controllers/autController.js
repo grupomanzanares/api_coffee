@@ -3,7 +3,7 @@ import { encrypt, compare } from "../../helpers/password.js"
 import { tokenSign } from "../../helpers/jwt.js"
 import User from "../models/User.js"
 import { handleHttpError } from "../../helpers/httperror.js"
-
+import jwt from 'jsonwebtoken'; // Importa jsonwebtoken
 
 const login = async (req, res) => {
     try {
@@ -50,7 +50,30 @@ const register = async (req, res) => {
     res.send({data})
 }
 
+
+
+const generateToken = async  (req, res) => {
+    const { identificacion, password } = req.body;
+
+    // Validar credenciales
+    const user = await User.findOne({
+        where: { identificacion, password },
+    });
+    
+    if (!user) {
+        return res.status(401).send({ error: 'Credenciales inválidas' });
+    }
+
+    // Generar token JWT válido por 24 horas
+    const token = jwt.sign({ id: user.identificacion, name: user.name }, process.env.JWT_SECRET, {
+        expiresIn: '24h', // Tiempo de expiración
+    });
+
+    res.send({ token });
+};
+
 export{
     login,
-    register
+    register,
+    generateToken
 }

@@ -73,3 +73,7 @@ Crear archivo de configuracion :   Carpeta config   -- archivo db.js,  configura
     npm install sequelize      // Para interactuar con la base de datos
 
     npm i multer  // Para trabajar con imagenes
+
+
+    npm install jsonwebtoken 
+    JWT_SECRET = "clavesecreta"  parametrizar clave secreta en .env
