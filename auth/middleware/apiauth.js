@@ -20,13 +20,8 @@ const apiAuth = (req, res, next) =>{
 
         next();
     } catch (error) {
-        if (error.name === 'TokenExpiredError') {
-            return res.status(401).json({ error: 'El token ha expirado.' });
-        } else if (error.name === 'JsonWebTokenError') {
-            return res.status(401).json({ error: 'Token inválido.' });
-        } else {
-            return res.status(500).json({ error: 'Error interno al verificar el token.' });
-        }
+        res.status('401')
+        res.send({error: 'Token inválido o expirado...'})
     }
 }
 
