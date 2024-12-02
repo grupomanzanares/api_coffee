@@ -1,8 +1,8 @@
 import { matchedData } from "express-validator"
-import { encrypt, compare } from "../helpers/password.js"
-import { tokenSign } from "../helpers/jwt.js"
+import { encrypt, compare } from "../../helpers/password.js"
+import { tokenSign } from "../../helpers/jwt.js"
 import User from "../models/User.js"
-import { handleHttpError } from "../helpers/httperror.js"
+import { handleHttpError } from "../../helpers/httperror.js"
 
 
 const login = async (req, res) => {

@@ -1,6 +1,6 @@
 import express from 'express';
 import { getCosecha, getCosechas, createCosecha, deleteCosecha, updateCosecha } from '../controllers/cosechaController.js';
-import { apiAuth } from '../middleware/apiauth.js'
+import { apiAuth } from '../auth/middleware/apiauth.js'
 import { validateCreateCosecha, validateGetCosecha } from '../validators/cosecha.js';
 //import { validateCreateTipoContrato, validateGetTipoContrato } from '../validators/tipoContrato.js'
 

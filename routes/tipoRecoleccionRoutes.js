@@ -1,6 +1,6 @@
 import express from 'express';
 import { getTipoRecoleccion, getTiposRecolecciones, createTipoRecoleccion, deleteTipoRecoleccion, updateTipoRecoleccion } from '../controllers/tipoRecoleccionController.js';
-import { apiAuth } from '../middleware/apiauth.js'
+import { apiAuth } from '../auth/middleware/apiauth.js'
 import { validateCreateTipoRecoleccion, validateGetTipoRecoleccion } from '../validators/tipoRecoleccion.js';
 //import { validateCreateTipoContrato, validateGetTipoContrato } from '../validators/tipoContrato.js'
 

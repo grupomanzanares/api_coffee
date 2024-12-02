@@ -1,6 +1,6 @@
 import express from 'express';
 import { getTipoIdentificacion, getTipoIdentificaciones, createTipoIdentificacion, deleteTipoIdentificacion, updateTipoIdentificacion } from '../controllers/tipoIdentificacionController.js';
-import { apiAuth } from '../middleware/apiauth.js'
+import { apiAuth } from '../auth/middleware/apiauth.js'
 import { validateCreateTipoIdentificacion, validateGetTipoIdentificacion } from '../validators/tipoIdentidicacion.js';
 //import { validateCreateTipoContrato, validateGetTipoContrato } from '../validators/tipoContrato.js'
 

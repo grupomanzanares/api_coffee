@@ -1,6 +1,6 @@
 import express from 'express';
 import { getBanco, getBancos, createBanco, deleteBanco, updateBancos } from '../controllers/bancoController.js';
-import { apiAuth } from '../middleware/apiauth.js'
+import { apiAuth } from '../auth/middleware/apiauth.js'
 import { validateCreateBanco, validateGetBanco } from '../validators/banco.js';
 
 const router = express.Router();

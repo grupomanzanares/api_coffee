@@ -1,6 +1,8 @@
 import { DataTypes, INTEGER } from "sequelize";
-import db from "../config/db.js";
+import db from "../../config/db.js";
 import Rol from "./Rol.js"; // Importar el modelo de roles
+
+
 
 const User = db.define('users', {
 

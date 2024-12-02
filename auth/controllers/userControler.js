@@ -1,7 +1,7 @@
 import { matchedData } from "express-validator";
 import User from "../models/User.js"
-import { handleHttpError } from '../helpers/httperror.js'
-
+import { handleHttpError } from '../../helpers/httperror.js'
+ 
 const getUsers = async (req, res)=>{
     try {
         const users = await User.findAll({
