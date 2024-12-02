@@ -1,6 +1,6 @@
 
 import  jwt  from "jsonwebtoken";
-import { handleHttpError } from "../../helpers/httperror";
+import { handleHttpError } from "../../helpers/httperror.js";
 
 const apiAuth = (req, res, next) =>{
     const authHeader = req.headers.authorization;
