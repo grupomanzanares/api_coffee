@@ -5,9 +5,11 @@ import db from "./config/db.js";
 /***
  * Rutas 
  */
-import userRoutes from './routes/userRoutes.js';
+import userRoutes from './auth/routes/userRoutes.js';
+import authRoutes from './auth/routes/authRoutes.js';
+
 import storageRoutes from './routes/storageRoutes.js';
-import authRoutes from './routes/authRoutes.js';
+
 import tipoContratoRoutes from './routes/tipoContratoRoutes.js'
 import tipoIdentificacionRoutes from './routes/tipoIdentificacionRoutes.js'
 import tipoRecoleccionRoutes from './routes/tipoRecoleccionRoutes.js'
