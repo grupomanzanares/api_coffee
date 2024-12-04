@@ -1,6 +1,7 @@
 import { matchedData } from "express-validator";
-import { handleHttpError } from '../helpers/httperror.js'
+
 import Sucursal from "../models/Sucursal.js";
+import { handleHttpError } from "../../../helpers/httperror.js";
 
 const getSucursales = async (req, res) =>{
     try {

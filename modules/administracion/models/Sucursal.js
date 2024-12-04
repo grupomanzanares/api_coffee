@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
-import db from "../config/db.js";
+import db from "../../../config/db.js";
+
 
 const Sucursal = db.define('Sucursales', {
     id: {
