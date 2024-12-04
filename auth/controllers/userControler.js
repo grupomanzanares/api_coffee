@@ -4,7 +4,6 @@ import { handleHttpError } from '../../helpers/httperror.js'
 
 
 
- 
 const getUsers = async (req, res)=>{
     try {
         const users = await User.findAll({

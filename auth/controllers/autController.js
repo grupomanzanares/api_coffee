@@ -1,9 +1,10 @@
 import { matchedData } from "express-validator"
-import { encrypt, compare } from "../../helpers/password.js"
-import { tokenSign } from "../../helpers/jwt.js"
+
 import User from "../models/User.js"
 import { handleHttpError } from "../../helpers/httperror.js"
 import jwt from 'jsonwebtoken'; // Importa jsonwebtoken
+import { encrypt, compare } from "../helpers/password.js"
+
 
 const login = async (req, res) => {
     try {
@@ -23,7 +24,9 @@ const login = async (req, res) => {
         }   
         
         user.set("password", undefined, {strict: false})
+        
         const data = {
+            //ojo mirar si vamos a usar el helper jwt o lo vamos a hacer aqui
             token: await tokenSign(user),
             user
         }
@@ -42,8 +45,14 @@ const register = async (req, res) => {
     const response = await User.create(body)
     response.set("password", undefined, {strict: false})
 
+    const solicitar_token = jwt.sign({ id: user.identificacion, name: user.name }, process.env.JWT_SECRET, {
+        expiresIn: '24h', // Tiempo de expiración
+    });
+
     const data = {
-        token: await tokenSign(response),
+        // token: await tokenSign(response),
+
+        solicitar_token: solicitar_token,
         user: response
     }
 

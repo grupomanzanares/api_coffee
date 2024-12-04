@@ -10,6 +10,11 @@ import authRoutes from './auth/routes/authRoutes.js';
 
 import storageRoutes from './routes/storageRoutes.js';
 
+
+
+import sucursalRoutes from './modules/administracion/routes/sucursalRoutes.js';
+
+
 import tipoContratoRoutes from './routes/tipoContratoRoutes.js'
 import tipoIdentificacionRoutes from './routes/tipoIdentificacionRoutes.js'
 import tipoRecoleccionRoutes from './routes/tipoRecoleccionRoutes.js'
@@ -72,6 +77,7 @@ app.use('/variedad', variedadRoutes)
 app.use('/recoleccion', recoleccionRoutes)
 app.use('/consecutivo', consecutivoRoutes)
 app.use('/maquina', maquinaRoutes)
+app.use('/sucursal', sucursalRoutes)
 
 /***
  * Configurar puerto y levantar servidor

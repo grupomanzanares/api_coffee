@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
 const JWT_SECRET = process.env.JWT_SECRET;
-
+//No entiendo esto..
 const tokenSign = async (user) => {
     const sign = await jwt.sign({
         _id : user._id,
@@ -15,6 +15,7 @@ const tokenSign = async (user) => {
 return sign;
 }
 
+//mirar si esto lo podemos quitar
 const verifyToken = async (jwtToken) => {
     try {
         await jwt.verify(jwtToken, JWT_SECRET)
