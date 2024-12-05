@@ -3,8 +3,7 @@ import db from "../../../config/db.js";
 
 
 
-
-const ActCategoria = db.define('ActCategorias', {
+const ActSubCategoria = db.define('ActSubCategorias', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -38,6 +37,5 @@ const ActCategoria = db.define('ActCategorias', {
 });
 
 
-
-export default ActCategoria;
+export default ActSubCategoria;
 

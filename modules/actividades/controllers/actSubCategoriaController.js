@@ -1,12 +1,11 @@
 import { matchedData } from "express-validator";
 import { handleHttpError } from "../../../helpers/httperror.js";
-import { ActCategoria  } from '../models/ActRelations.js';
+import { ActSubCategoria } from '../models/ActRelations.js';
+const entity = "ActSubCategoria"
 
-const entity = "ActCategoria"
-
-const getActCategorias = async (req, res) =>{
+const getActSubCategorias = async (req, res) =>{
     try {
-        const registros = await ActCategoria.findAll({
+        const registros = await ActSubCategoria.findAll({
             where: {habilitado: true}
         });
         res.json(registros)
@@ -15,12 +14,12 @@ const getActCategorias = async (req, res) =>{
     }
 }
 
-const getActCategoria = async(req, res) => {
+const getActSubCategoria = async(req, res) => {
     try {
         req = matchedData(req)
         //console.log(req)
         const { id } = req
-        const data = await ActCategoria.findOne({
+        const data = await ActSubCategoria.findOne({
             where: {
                 id: id,
                 habilitado: true
@@ -39,10 +38,10 @@ const getActCategoria = async(req, res) => {
     }
 }
 
-const createActCategoria = async (req, res) => {
+const createActSubCategoria = async (req, res) => {
     try {
         const body = matchedData(req)
-        const response = await ActCategoria.create(body)
+        const response = await ActSubCategoria.create(body)
         res.send(response)
     } catch (error) {
         console.log(error)
@@ -50,12 +49,12 @@ const createActCategoria = async (req, res) => {
     }
 }
 
-const deleteActCategoria = async(req, res) =>{
+const deleteActSubCategoria = async(req, res) =>{
     try {
         const { id } = req.params
         //console.log(id)
 
-        const response = await ActCategoria.update({habilitado: false}, {
+        const response = await ActSubCategoria.update({habilitado: false}, {
             where: {id, habilitado: true}
         })
 
@@ -74,14 +73,14 @@ const deleteActCategoria = async(req, res) =>{
     }
 }
 
-const updateActCategoria = async (req, res) => {
+const updateActSubCategoria = async (req, res) => {
     try {
         const { id } = req.params
 
         const body = req.body
         //console.log('Banco', id)
 
-        const response = await ActCategoria.update(body, {
+        const response = await ActSubCategoria.update(body, {
             where: { id }
         })
 
@@ -91,7 +90,7 @@ const updateActCategoria = async (req, res) => {
             })
         }
 
-        const updateRegistro = await ActCategoria.findByPk(id);
+        const updateRegistro = await ActSubCategoria.findByPk(id);
 
         res.status(200).json({
             message:  ` ${entity} actualizado correctamente `  ,
@@ -104,9 +103,9 @@ const updateActCategoria = async (req, res) => {
 }
 
 export{
-    getActCategorias,
-    getActCategoria,
-    createActCategoria,
-    deleteActCategoria,
-    updateActCategoria
+    getActSubCategorias,
+    getActSubCategoria,
+    createActSubCategoria,
+    deleteActSubCategoria,
+    updateActSubCategoria
 }
