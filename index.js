@@ -79,7 +79,7 @@ app.use('/recoleccion', recoleccionRoutes)
 app.use('/consecutivo', consecutivoRoutes)
 app.use('/maquina', maquinaRoutes)
 app.use('/sucursal', sucursalRoutes)
-app.use('/ActCategoria', ActCategoriaRoutes)
+app.use('/act-categoria', ActCategoriaRoutes)
 
 
 /***
