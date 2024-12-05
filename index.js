@@ -13,6 +13,7 @@ import storageRoutes from './routes/storageRoutes.js';
 
 
 import sucursalRoutes from './modules/administracion/routes/sucursalRoutes.js';
+import ActCategoriaRoutes from './modules/actividades/routes/ActCategoriaRoutes.js';
 
 
 import tipoContratoRoutes from './routes/tipoContratoRoutes.js'
@@ -78,6 +79,8 @@ app.use('/recoleccion', recoleccionRoutes)
 app.use('/consecutivo', consecutivoRoutes)
 app.use('/maquina', maquinaRoutes)
 app.use('/sucursal', sucursalRoutes)
+app.use('/ActCategoria', ActCategoriaRoutes)
+
 
 /***
  * Configurar puerto y levantar servidor
