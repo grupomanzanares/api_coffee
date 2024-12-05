@@ -8,9 +8,9 @@ import { validateCreateActCategoria, validateGetActCategoria } from '../validato
 const router = express.Router();
 
 router.get('/', apiAuth, getActCategorias)
-router.get('/:id', apiAuth, validateGetSucursal,  getActCategoria)
+router.get('/:id', apiAuth, validateGetActCategoria,  getActCategoria)
 router.post('/create', apiAuth,validateCreateActCategoria, apiAuth, createActCategoria)
-router.put('/:id', apiAuth,validateGetSucursal,  updateActCategoria)
+router.put('/:id', apiAuth,validateGetActCategoria,  updateActCategoria)
 router.delete('/delete/:id',  apiAuth, deleteActCategoria)
 
 

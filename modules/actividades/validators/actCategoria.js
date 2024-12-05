@@ -29,6 +29,6 @@ const validateGetActCategoria = [
 ]
 
 export {
-    validateCreateSucursal,
-    validateGetSucursal
+    validateCreateActCategoria,
+    validateGetActCategoria
 };
