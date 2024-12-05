@@ -15,7 +15,7 @@ import storageRoutes from './routes/storageRoutes.js';
 import sucursalRoutes from './modules/administracion/routes/sucursalRoutes.js';
 import ActCategoriaRoutes from './modules/actividades/routes/ActCategoriaRoutes.js';
 import ActSubCategoriaRoutes from './modules/actividades/routes/ActSubCategoriaRoutes.js';
-import ActividadRoutes from './modules/actividades/routes/ActSubCategoriaRoutes.js';
+import ActividadRoutes from './modules/actividades/routes/ActividadRoutes.js';
 
 import tipoContratoRoutes from './routes/tipoContratoRoutes.js'
 import tipoIdentificacionRoutes from './routes/tipoIdentificacionRoutes.js'
@@ -82,7 +82,7 @@ app.use('/maquina', maquinaRoutes)
 app.use('/sucursal', sucursalRoutes)
 app.use('/act-categoria', ActCategoriaRoutes)
 app.use('/act-subcategoria', ActSubCategoriaRoutes)
-
+app.use('/actividad', ActividadRoutes)
 /***
  * Configurar puerto y levantar servidor
  */  
