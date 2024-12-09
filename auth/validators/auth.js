@@ -18,7 +18,7 @@ const validateRegister = [
 ];
 
 const validateLogin = [
-    body('email').exists().notEmpty().isEmail(),
+    body('identificacion').exists().notEmpty(),
     body('password').exists().notEmpty(),
 
     (req, res, next) =>{

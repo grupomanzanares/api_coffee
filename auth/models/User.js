@@ -25,13 +25,13 @@ const User = db.define('users', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
- 
+
     },
 
     celphone: {
         type: DataTypes.STRING,
         allowNull: false,
- 
+
     },
     password:{
         type: DataTypes.STRING,

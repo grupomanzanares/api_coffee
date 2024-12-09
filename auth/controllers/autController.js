@@ -4,21 +4,24 @@ import User from "../models/User.js"
 import { handleHttpError } from "../../helpers/httperror.js"
 import jwt from 'jsonwebtoken'; // Importa jsonwebtoken
 import { encrypt, compare } from "../helpers/password.js"
+import { tokenSign } from "../../helpers/jwt.js"
 
 
 const login = async (req, res) => {
-    try {
-        req =  matchedData(req)
-        const user = await User.findOne({ where: { email: req.email } });
-        if(!user){
-            handleHttpError(res, 'Usuario incorrecto')
-            return
-        }
 
+    try {
+        req = matchedData(req);
+        console.log("Datos validados:", req);
+        const user = await User.findOne({where:{ identificacion: req.identificacion } });
+            if(!user){
+                handleHttpError(res, 'Usuario incorrecto')
+                return
+            }
         const hashPassword = user.password;
+        console.log("el pass",hashPassword)
         const check = await compare(req.password, hashPassword)
 
-        if (!check) {
+        if (check) {
             handleHttpError(res, 'Contraseña incorrecta')
             return
         }   
@@ -26,16 +29,18 @@ const login = async (req, res) => {
         user.set("password", undefined, {strict: false})
         
         const data = {
-            //ojo mirar si vamos a usar el helper jwt o lo vamos a hacer aqui
+             //ojo mirar si vamos a usar el helper jwt o lo vamos a hacer aqui
             token: await tokenSign(user),
             user
         }
+
+        
         res.send(data)
     } catch (e) {   
         console.error(e);
         handleHttpError(res, 'Error de login')
     }
-    req =  matchedData(req)
+   
 }
 
 const register = async (req, res) => {

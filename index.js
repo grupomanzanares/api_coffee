@@ -44,24 +44,14 @@ app.use(express.json());
 
 
 /*** Conexión a la base de datos y eliminación de índices duplicados  */
-async function syncDatabase() {
-  try {
-    const [results] = await db.query("SHOW INDEX FROM users WHERE Key_name LIKE 'email%'");
-    
-    const duplicateIndexes = results.filter(index => index.Key_name !== 'email');
-    
-    const dropIndexPromises = duplicateIndexes.map(index =>
-      db.query(`ALTER TABLE users DROP INDEX ${index.Key_name}`)
-    );
-    
-    await Promise.all(dropIndexPromises);
-    await db.sync({ alter: true });  // Asegúrate de tener las tablas actualizadas
-    //console.log('Tablas sincronizadas sin índices duplicados');
-  } catch (e) {
-    console.error('Error al sincronizar tablas:', e);
-  }
+//Conexion a la base de datos
+try {
+  await db.authenticate();
+  db.sync();
+  console.info('Conexion exitosa a la base de datos')
+} catch (error) {
+  console.log(error)
 }
-syncDatabase();
 
 /*** Rutas  */
 app.use('/users', userRoutes);
