@@ -11,12 +11,12 @@ const login = async (req, res) => {
 
     try {
         req = matchedData(req);
-        console.log("Datos validados:", req);
         const user = await User.findOne({where:{ identificacion: req.identificacion } });
             if(!user){
                 handleHttpError(res, 'Usuario incorrecto')
                 return
             }
+
         const hashPassword = user.password;
         console.log("el pass",hashPassword)
         const check = await compare(req.password, hashPassword)
@@ -40,24 +40,25 @@ const login = async (req, res) => {
         console.error(e);
         handleHttpError(res, 'Error de login')
     }
-   
+
 }
 
 const register = async (req, res) => {
     req = matchedData(req)
+    console.log("este es el registro a guardar", req)
+
     const passwordHash = await encrypt(req.password)
     const body = {...req, password: passwordHash}
     const response = await User.create(body)
+    
     response.set("password", undefined, {strict: false})
 
-    const solicitar_token = jwt.sign({ id: user.identificacion, name: user.name }, process.env.JWT_SECRET, {
-        expiresIn: '24h', // Tiempo de expiración
-    });
+    // const solicitar_token = jwt.sign({ id: User.identificacion, name: User.name }, process.env.JWT_SECRET, {
+    //     expiresIn: '24h', // Tiempo de expiración
+    // });
 
     const data = {
-        // token: await tokenSign(response),
-
-        solicitar_token: solicitar_token,
+        token: await tokenSign(response),
         user: response
     }
 

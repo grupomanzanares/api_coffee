@@ -29,8 +29,7 @@ const User = db.define('users', {
     },
 
     celphone: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: DataTypes.STRING
 
     },
     password:{

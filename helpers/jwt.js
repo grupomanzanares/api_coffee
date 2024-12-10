@@ -1,19 +1,21 @@
 import jwt from 'jsonwebtoken'
+import User from '../auth/models/User.js';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 //No entiendo esto..
 const tokenSign = async (user) => {
     const sign = await jwt.sign({
-        _id : user._id,
-        role: user.role
+        _id : User.identificacion,
+        name: User.name
     },
     JWT_SECRET,
     {
-        expiresIn: "2h"
+        expiresIn: "24h"
     }
 )
 return sign;
 }
+
 
 //mirar si esto lo podemos quitar
 const verifyToken = async (jwtToken) => {
