@@ -18,7 +18,7 @@ const login = async (req, res) => {
             }
 
         const hashPassword = user.password;
-        console.log("el pass",hashPassword)
+        // console.log("el pass",hashPassword)
         const check = await compare(req.password, hashPassword)
 
         if (!check) {
@@ -85,6 +85,10 @@ const register = async (req, res) => {
 
 
 const generateToken = async  (req, res) => {
+    
+    const passwordHash = await encrypt(req.password)
+    const body = {...req, password: passwordHash}
+
     const { identificacion, password } = req.body;
 
     // Validar credenciales
