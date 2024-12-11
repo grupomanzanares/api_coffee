@@ -8,81 +8,84 @@ import { tokenSign } from "../../helpers/jwt.js"
 
 
 const login = async (req, res) => {
-
     try {
+        // Validar y sanitizar los datos de entrada
         req = matchedData(req);
-        const user = await User.findOne({where:{ identificacion: req.identificacion } });
-            if(!user){
-                handleHttpError(res, 'Usuario incorrecto')
-                return
-            }
 
-        const hashPassword = user.password;
-        // console.log("el pass",hashPassword)
-        const check = await compare(req.password, hashPassword)
+        // Buscar al usuario por identificación
+        const user = await User.findOne({ where: { identificacion: req.identificacion } });
 
-        if (!check) {
-            handleHttpError(res, 'Contraseña incorrecta')
-            return
-        }   
-        
-        user.set("password", undefined, {strict: false})
-        
-        const data = {
-             //ojo mirar si vamos a usar el helper jwt o lo vamos a hacer aqui
-            token: await tokenSign(user),
-            user
+        if (!user) {
+            // Mensaje genérico para evitar filtrado de información
+            return handleHttpError(res, 'Credenciales inválidas');
         }
 
-        
-        res.send(data)
-    } catch (e) {   
-        console.error(e);
-        handleHttpError(res, 'Error de login')
-    }
+        // Comparar la contraseña
+        const hashPassword = user.password;
+        const isPasswordValid = await compare(req.password, hashPassword);
 
-}
+        if (!isPasswordValid) {
+            return handleHttpError(res, 'Credenciales inválidas');
+        }
+
+        // Eliminar la contraseña del objeto de usuario antes de enviar
+        user.set("password", undefined, { strict: false });
+
+        // Generar token JWT
+        const token = await tokenSign(user);
+
+        // Preparar los datos de respuesta
+        const data = {
+            token,
+            user
+        };
+
+        // Enviar respuesta
+        res.send(data);
+    } catch (error) {
+        console.error("Error en login:", error);
+        handleHttpError(res, 'Error de login');
+    }
+};
+
 
 const register = async (req, res) => {
 
     try {
 
+        req = matchedData(req)
 
-            req = matchedData(req)
-            
-            const passwordHash = await encrypt(req.password)
-            const body = {...req, password: passwordHash}
-            const response = await User.create(body)
+        const passwordHash = await encrypt(req.password)
+        const body = { ...req, password: passwordHash }
+        const response = await User.create(body)
 
-            response.set("password", undefined, {strict: false})
+        response.set("password", undefined, { strict: false })
 
-            const data = {
-                token: await tokenSign(response),
-                user: response
-            }
+        const data = {
+            token: await tokenSign(response),
+            user: response
+        }
 
-            // res.send({data})
-            res.status(201).send({ data });
+        // res.send({data})
+        res.status(201).send({ data });
 
     } catch (error) {
         console.error("Error al registrar usuario:", error);
 
-    // Manejar errores de clave única
-    if (error.name === "SequelizeUniqueConstraintError") {
-        return res.status(400).send({
-            message: "El usuario ya se encuentra registrado con esa identificación.",
-            field: error.errors[0].path, // Campo que causó el error
-        });
-    }
-           // Manejar otros errores
-            res.status(500).send({
-                message: "Ocurrió un error al registrar el usuario.",
-                error: error.message,
+        // Manejar errores de clave única
+        if (error.name === "SequelizeUniqueConstraintError") {
+            return res.status(400).send({
+                message: "El usuario ya se encuentra registrado con esa identificación.",
+                field: error.errors[0].path, // Campo que causó el error
             });
         }
+        // Manejar otros errores
+        res.status(500).send({
+            message: "Ocurrió un error al registrar el usuario.",
+            error: error.message,
+        });
+    }
 }
-
-
 
 const generateToken = async (req, res) => {
     try {
@@ -103,11 +106,6 @@ const generateToken = async (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).send({ error: "Credenciales inválidas" });
         }
-
-
-
-        
-
         // Generar token JWT válido por 24 horas
         const token = jwt.sign(
             { id: user.identificacion, name: user.name },
@@ -124,8 +122,7 @@ const generateToken = async (req, res) => {
     }
 };
 
-
-export{
+export {
     login,
     register,
     generateToken
