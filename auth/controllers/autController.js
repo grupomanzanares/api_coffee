@@ -84,29 +84,42 @@ const register = async (req, res) => {
 
 
 
-const generateToken = async  (req, res) => {
-    
-    const passwordHash = await encrypt(req.password)
-    const body = {...req, password: passwordHash}
+const generateToken = async (req, res) => {
+    try {
+        const { identificacion, password } = req.body;
 
-    const { identificacion, password } = req.body;
+        // Buscar usuario únicamente por identificación
+        const user = await User.findOne({
+            where: { identificacion },
+        });
 
-    // Validar credenciales
-    const user = await User.findOne({
-        where: { identificacion, password },
-    });
-    
-    if (!user) {
-        return res.status(401).send({ error: 'Credenciales inválidas' });
+        if (!user) {
+            return res.status(401).send({ error: "Credenciales inválidas" });
+        }
+
+        // Comparar la contraseña proporcionada con la almacenada
+        const isPasswordValid = await compare(password, user.password); // compare es una función que usa bcrypt
+
+        if (!isPasswordValid) {
+            return res.status(401).send({ error: "Credenciales inválidas" });
+        }
+
+        // Generar token JWT válido por 24 horas
+        const token = jwt.sign(
+            { id: user.identificacion, name: user.name },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "24h", // Tiempo de expiración
+            }
+        );
+
+        res.send({ token });
+    } catch (error) {
+        console.error("Error al generar token:", error.message);
+        res.status(500).send({ error: "Error interno del servidor" });
     }
-
-    // Generar token JWT válido por 24 horas
-    const token = jwt.sign({ id: user.identificacion, name: user.name }, process.env.JWT_SECRET, {
-        expiresIn: '24h', // Tiempo de expiración
-    });
-
-    res.send({ token });
 };
+
 
 export{
     login,
