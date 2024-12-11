@@ -21,7 +21,7 @@ const login = async (req, res) => {
         console.log("el pass",hashPassword)
         const check = await compare(req.password, hashPassword)
 
-        if (check) {
+        if (!check) {
             handleHttpError(res, 'Contraseña incorrecta')
             return
         }   
@@ -44,25 +44,42 @@ const login = async (req, res) => {
 }
 
 const register = async (req, res) => {
-    req = matchedData(req)
-    console.log("este es el registro a guardar", req)
 
-    const passwordHash = await encrypt(req.password)
-    const body = {...req, password: passwordHash}
-    const response = await User.create(body)
-    
-    response.set("password", undefined, {strict: false})
+    try {
 
-    // const solicitar_token = jwt.sign({ id: User.identificacion, name: User.name }, process.env.JWT_SECRET, {
-    //     expiresIn: '24h', // Tiempo de expiración
-    // });
 
-    const data = {
-        token: await tokenSign(response),
-        user: response
+            req = matchedData(req)
+            
+            const passwordHash = await encrypt(req.password)
+            const body = {...req, password: passwordHash}
+            const response = await User.create(body)
+
+            response.set("password", undefined, {strict: false})
+
+            const data = {
+                token: await tokenSign(response),
+                user: response
+            }
+
+            // res.send({data})
+            res.status(201).send({ data });
+
+    } catch (error) {
+        console.error("Error al registrar usuario:", error);
+
+    // Manejar errores de clave única
+    if (error.name === "SequelizeUniqueConstraintError") {
+        return res.status(400).send({
+            message: "El usuario ya se encuentra registrado con esa identificación.",
+            field: error.errors[0].path, // Campo que causó el error
+        });
     }
-
-    res.send({data})
+           // Manejar otros errores
+            res.status(500).send({
+                message: "Ocurrió un error al registrar el usuario.",
+                error: error.message,
+            });
+        }
 }
 
 
