@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', apiAuth, getSucursales)
 router.get('/:id', apiAuth, validateGetSucursal,  getSucursal)
-router.post('/create', apiAuth,validateCreateSucursal, apiAuth, createSucursal)
+router.post('/create', apiAuth, validateCreateSucursal, createSucursal)
 router.put('/:id', apiAuth,validateGetSucursal,  updateSucursal)
 router.delete('/delete/:id',  apiAuth, deleteSucursal)
 

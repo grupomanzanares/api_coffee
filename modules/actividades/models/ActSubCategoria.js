@@ -24,11 +24,11 @@ const ActSubCategoria = db.define('ActSubCategorias', {
     },
     usuario: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: true
     },
     usuarioMod: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: true
     }
 },
 {

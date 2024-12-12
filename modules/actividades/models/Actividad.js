@@ -29,11 +29,19 @@ const Actividad = db.define('Actividades', {
     },
     usuario: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: true
     },
     usuarioMod: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: true
+    },
+    unidadId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    subCategoriaId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
     }
 },
 {

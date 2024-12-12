@@ -16,8 +16,6 @@ ActSubCategoria.belongsTo(ActCategoria, { foreignKey: 'categoriaId', as: 'catego
 // Relación: Una categoría pertenece a una sucursal
 ActCategoria.belongsTo(Sucursal, { foreignKey: 'sucursalId', as: 'sucursal' });
 
-
-
 // Relación: Una actividad pertenece a una unidad de medida
 Actividad.belongsTo(Unidad, { foreignKey: 'unidadId', as: 'unidad' });
 
@@ -29,8 +27,5 @@ Unidad.hasMany(Actividad, { foreignKey: 'unidadId', as: 'actividades' });
 Actividad.belongsTo(ActSubCategoria, { foreignKey: 'subCategoriaId', as: 'subcategoria' });
 // Relación: Una subcategoría tiene muchas actividades
 ActSubCategoria.hasMany(Actividad, { foreignKey: 'subCategoriaId', as: 'actividades' });
-
-
-
 
 export { Sucursal, ActCategoria, ActSubCategoria,Actividad};

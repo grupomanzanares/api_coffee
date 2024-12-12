@@ -23,11 +23,11 @@ const Unidad = db.define('Unidades', {
     },
     usuario: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: true
     },
     usuarioMod: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: true
     }
 },
 {

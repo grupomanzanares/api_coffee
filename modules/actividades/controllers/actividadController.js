@@ -42,19 +42,23 @@ const getActividad = async(req, res) => {
 
 const createActividad = async (req, res) => {
     try {
-        const body = matchedData(req)
-        const response = await Actividad.create(body)
-        res.send(response)
+        const body = matchedData(req);
+
+        console.log(body)
+
+        const actividad = await Actividad.create(body);
+        res.send(actividad);
     } catch (error) {
-        console.log(error)
-        handleHttpError(res,  `No se pudo crear  ${entity} `)
+        console.error("Error al crear la actividad:", error);
+        handleHttpError(res, "No se pudo crear la actividad");
     }
-}
+};
+
 
 const deleteActividad = async(req, res) =>{
     try {
         const { id } = req.params
-        //console.log(id)
+        console.log(id)
 
         const response = await Actividad.update({habilitado: false}, {
             where: {id, habilitado: true}

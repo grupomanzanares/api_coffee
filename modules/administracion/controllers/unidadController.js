@@ -47,8 +47,8 @@ const createUnidad = async (req, res) => {
         const response = await Unidad.create(body)
         res.send(response)
     } catch (error) {
-        console.log(error)
-        handleHttpError(res,  `No se pudo crear  ${entity} `)
+        console.error("Error al crear la unidad:", error);
+        handleHttpError(res, `No se pudo crear la unidad`);
     }
 }
 

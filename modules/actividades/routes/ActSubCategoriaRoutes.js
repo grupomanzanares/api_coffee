@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/', apiAuth, getActSubCategorias)
 router.get('/:id', apiAuth, validateGetActSubCategoria,  getActSubCategoria)
-router.post('/create', apiAuth,validateCreateActSubCategoria, apiAuth, createActSubCategoria)
+router.post('/create', apiAuth, validateCreateActSubCategoria, createActSubCategoria)
 router.put('/:id', apiAuth,validateGetActSubCategoria,  updateActSubCategoria)
 router.delete('/delete/:id',  apiAuth, deleteActSubCategoria)
 

@@ -1,4 +1,4 @@
-import { matchedData } from "express-validator";
+    import { matchedData } from "express-validator";
 import { handleHttpError } from "../../../helpers/httperror.js";
 import { ActSubCategoria } from '../models/ActRelations.js';
 const entity = "ActSubCategoria"
