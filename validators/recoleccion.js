@@ -3,7 +3,7 @@ import { body, check, validationResult } from "express-validator";
 const validateCreateRecoleccion = [
     body('prefijo').exists().notEmpty(),
     body('id').exists().notEmpty(),
-    body('fecha').exists().notEmpty().isDate({ format: 'YYYY-MM-DD' }),
+    // body('fecha').exists().notEmpty().isDate({ format: 'YYYY-MM-DD' }),
     body('jornal').exists().notEmpty(),
     body('kg').exists().notEmpty(),
     body('precio').exists().notEmpty(),
