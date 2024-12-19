@@ -36,11 +36,11 @@ const Actividad = db.define('Actividades', {
     },
     unidadId: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
     },
     subCategoriaId: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
     }
 },
 {

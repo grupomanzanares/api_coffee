@@ -4,9 +4,10 @@ const validateCreateActividad = [
     body('nombre')
         .exists().withMessage('El nombre es obligatorio')
         .notEmpty().withMessage('El nombre no puede estar vacío')
-        .isLength({ min: 5, max: 30 }).withMessage('El nombre debe tener entre 5 y 30 caracteres'),
+        .isLength({ min: 5, max: 100 }).withMessage('El nombre debe tener entre 5 y 100 caracteres'),
     body('descripcion')
-        .optional()
+        .exists().withMessage('La descripción es obligatoria')
+        .notEmpty().withMessage('La descripción no puede estar vacía')
         .isLength({ max: 150 }).withMessage('La descripción no puede superar los 150 caracteres'),
     body('usuario')
         .optional()
