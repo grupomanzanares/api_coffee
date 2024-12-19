@@ -9,7 +9,7 @@ const validateCreateActividad = [
         .exists().withMessage('La descripción es obligatoria')
         .notEmpty().withMessage('La descripción no puede estar vacía')
         .isLength({ max: 150 }).withMessage('La descripción no puede superar los 150 caracteres'),
-    body('descripcion')
+    body('controlPorLote')
         .exists().withMessage('Control por lote'),
     body('usuario')
         .optional()
