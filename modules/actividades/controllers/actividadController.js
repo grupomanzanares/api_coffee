@@ -47,10 +47,11 @@ const createActividad = async (req, res) => {
         console.log(body)
 
         const actividad = await Actividad.create(body);
-        res.status(201).send(response); // 201 indica creación exitosa
+        res.status(201).send(actividad); // 201 indica creación exitosa
     } catch (error) {
         const statusCode = error.name === 'ValidationError' ? 400 : 500;
-        handleHttpError(res, 'No se pudo crear al Recolector, intenta nuevamente', statusCode);
+        console.error('Error al crear actividad:', error);
+        handleHttpError(res, 'No se pudo crear Actividad, intenta nuevamente', statusCode);
     }
 };
 
