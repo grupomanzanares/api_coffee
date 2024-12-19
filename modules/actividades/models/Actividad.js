@@ -19,8 +19,7 @@ const Actividad = db.define('Actividades', {
     },
     controlPorLote: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false // Por defecto no se maneja por lote
+        allowNull: false
     },
     habilitado:{
         type: DataTypes.BOOLEAN, 
