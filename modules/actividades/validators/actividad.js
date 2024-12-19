@@ -1,21 +1,34 @@
 import { body, check, validationResult } from "express-validator";
 
 const validateCreateActividad = [
-    body('nombre').exists().notEmpty().isLength({min: 5, max: 30}),
-    body('descripcion').exists().notEmpty().isLength({min: 0, max: 150}),
-    body('usuario').optional().isString().withMessage('El usuario debe ser una cadena de texto'),
-    body('usuarioMod').optional().isString().withMessage('El usuarioMod debe ser una cadena de texto'),
-    body('unidadId').exists().isInt().withMessage('El unidadId debe ser un número entero válido'),
-    body('subCategoriaId').exists().isInt().withMessage('El subCategoriaId debe ser un número entero válido'),
+    body('nombre')
+        .exists().withMessage('El nombre es obligatorio')
+        .notEmpty().withMessage('El nombre no puede estar vacío')
+        .isLength({ min: 5, max: 30 }).withMessage('El nombre debe tener entre 5 y 30 caracteres'),
+    body('descripcion')
+        .optional()
+        .isLength({ max: 150 }).withMessage('La descripción no puede superar los 150 caracteres'),
+    body('usuario')
+        .optional()
+        .isString().withMessage('El usuario debe ser una cadena de texto'),
+    body('usuarioMod')
+        .optional()
+        .isString().withMessage('El usuarioMod debe ser una cadena de texto'),
+    body('unidadId')
+        .exists().withMessage('El unidadId es obligatorio')
+        .isInt().withMessage('El unidadId debe ser un número entero válido'),
+    body('subCategoriaId')
+        .exists().withMessage('El subCategoriaId es obligatorio')
+        .isInt().withMessage('El subCategoriaId debe ser un número entero válido'),
     (req, res, next) => {
-        try {
-            validationResult(req).throw();
-            return next();
-        } catch (error) {
-            res.status(403).send({ errors: error.array() });
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(403).json({ errors: errors.array() });
         }
+        next();
     }
 ];
+
 
 const validateGeActividad = [
     check('id').exists().notEmpty(),
