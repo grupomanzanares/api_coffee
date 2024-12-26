@@ -4,6 +4,7 @@ import { apiAuth } from '../../../auth/middleware/apiauth.js';
 import { validateCreateProgramacion, validateGetProgramacion } from '../validators/programacion.js';
 
 
+
 //falta arreglar las validaciones...
 const router = express.Router();
 

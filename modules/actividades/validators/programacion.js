@@ -63,7 +63,7 @@ const validateCreateProgramacion = [
 ];
 
 
-const validateGeProgramacion = [
+const validateGetProgramacion = [
     check('id').exists().notEmpty(),
 
     (req, res, next) =>{
@@ -79,5 +79,5 @@ const validateGeProgramacion = [
 
 export {
     validateCreateProgramacion,
-    validateGeProgramacion
+    validateGetProgramacion
 };
