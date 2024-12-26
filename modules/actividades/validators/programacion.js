@@ -17,7 +17,7 @@ const validateCreateProgramacion = [
         .custom(value => value > 0).withMessage('La cantidad debe ser mayor a cero'),
 
     body('sucursalId')
-        .isInt().withMessage('El sucursalId debe ser un número entero válido'),
+        .exists(),
     body('responsableId')
         .optional()
         .isInt().withMessage('El responsableId debe ser un número entero válido'),
