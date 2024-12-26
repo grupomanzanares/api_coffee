@@ -4,6 +4,7 @@ import Actividad from './Actividad.js';
 import Sucursal from '../../administracion/models/Sucursal.js';
 import Unidad from '../../administracion/models/Unidad.js';
 import Finca from '../../../models/Finca.js';
+import Programacion from './Programacion.js';
 
 // Relación: Una sucursal tiene muchas categorías
 Sucursal.hasMany(ActCategoria, { foreignKey: 'sucursalId', as: 'categorias' });
