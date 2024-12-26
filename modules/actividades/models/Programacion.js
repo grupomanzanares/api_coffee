@@ -3,7 +3,7 @@ import db from "../../../config/db.js";
 
 const Programacion = db.define('Programaciones', {
     id: {
-        type: DataTypes.NUMERIC(16, 0),
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
