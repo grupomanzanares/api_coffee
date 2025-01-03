@@ -20,7 +20,7 @@ const Programacion = db.define('Programaciones', {
         allowNull: true
     },
     cantidad: {
-        type: DataTypes.NUMERIC(18, 4),
+        type: DataTypes.NUMERIC(16, 2),
         allowNull: false
     },
     habilitado: {
