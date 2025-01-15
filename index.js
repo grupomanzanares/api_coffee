@@ -13,6 +13,8 @@ import storageRoutes from './routes/storageRoutes.js';
 
 
 import sucursalRoutes from './modules/administracion/routes/sucursalRoutes.js';
+import sucursalUsuarioRoutes from './modules/administracion/routes/sucursalUsuarioRoutes.js';
+
 import estadoRoutes from './modules/administracion/routes/estadoRoutes.js';
 import prioridadRoutes from './modules/administracion/routes/prioridadRoutes.js';
 import unidadRoutes from './modules/administracion/routes/unidadRoutes.js';
@@ -77,6 +79,7 @@ app.use('/recoleccion', recoleccionRoutes)
 app.use('/consecutivo', consecutivoRoutes)
 app.use('/maquina', maquinaRoutes)
 app.use('/sucursal', sucursalRoutes)
+app.use('/sucursalUsuario', sucursalUsuarioRoutes)
 app.use('/act-categoria', ActCategoriaRoutes)
 app.use('/act-subcategoria', ActSubCategoriaRoutes)
 app.use('/actividad', ActividadRoutes)
