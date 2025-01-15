@@ -27,6 +27,20 @@ const validateCreateProgramacion = [
     body('actividadId')
         .optional()
         .isInt().withMessage('El actividadId debe ser un número entero válido'),
+    body('signo')
+        .exists().withMessage('El signo es obligatorio')
+        .isInt().withMessage('El signo debe ser valido 1 o -1'),
+    
+    body('prioridadId')
+        .exists().withMessage('El prioridadId es obligatorio')
+        .isInt().withMessage('El estadoId debe ser un número entero válido'),
+    body('estadoId')
+        .exists().withMessage('El estadoId es obligatorio')
+        .isInt().withMessage('El estadoId debe ser un número entero válido'),
+    
+    body('prioridadId')
+        .exists().withMessage('El prioridadId es obligatorio')
+        .isInt().withMessage('El estadoId debe ser un número entero válido'),
 
     body('habilitado')
         .optional()

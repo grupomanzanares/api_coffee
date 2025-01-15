@@ -23,14 +23,7 @@ const validateCreateActividad = [
     body('subCategoriaId')
         .exists().withMessage('El subCategoriaId es obligatorio')
         .isInt().withMessage('El subCategoriaId debe ser un número entero válido'),
-    body('estadoId')
-        .exists().withMessage('El estadoId es obligatorio')
-        .isInt().withMessage('El estadoId debe ser un número entero válido'),
-    
-    body('prioridadId')
-        .exists().withMessage('El prioridadId es obligatorio')
-        .isInt().withMessage('El prioridadId debe ser un número entero válido'),
-    (req, res, next) => {
+      (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(403).json({ errors: errors.array() });
