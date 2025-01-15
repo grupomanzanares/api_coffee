@@ -41,6 +41,12 @@ const Programacion = db.define('Programaciones', {
         type: DataTypes.STRING(100),
         allowNull: true
     },
+
+    signo: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    
     maquina: {
         type: DataTypes.STRING(40),
         allowNull: true

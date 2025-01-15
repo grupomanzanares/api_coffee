@@ -17,6 +17,9 @@ import unidadRoutes from './modules/administracion/routes/unidadRoutes.js';
 import ActCategoriaRoutes from './modules/actividades/routes/ActCategoriaRoutes.js';
 import ActSubCategoriaRoutes from './modules/actividades/routes/ActSubCategoriaRoutes.js';
 import ActividadRoutes from './modules/actividades/routes/ActividadRoutes.js';
+import EstadoRoutes from './modules/actividades/routes/EstadoRoutes.js';
+import PrioridadRoutes from './modules/actividades/routes/PrioridadRoutes.js';
+
 import ProgramacionRoutes from './modules/actividades/routes/ProgramacionRoutes.js';
 
 
@@ -76,6 +79,8 @@ app.use('/sucursal', sucursalRoutes)
 app.use('/act-categoria', ActCategoriaRoutes)
 app.use('/act-subcategoria', ActSubCategoriaRoutes)
 app.use('/actividad', ActividadRoutes)
+app.use('/estado', EstadoRoutes)
+app.use('/prioridad', PrioridadRoutes)
 app.use('/programacion', ProgramacionRoutes)
 
 app.use('/unidad', unidadRoutes)
