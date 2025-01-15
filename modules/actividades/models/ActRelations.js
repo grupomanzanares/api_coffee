@@ -5,6 +5,8 @@ import Sucursal from '../../administracion/models/Sucursal.js';
 import Unidad from '../../administracion/models/Unidad.js';
 import Finca from '../../../models/Finca.js';
 import Programacion from './Programacion.js';
+import Estado from '../../administracion/models/Estado.js';
+import Prioridad from '../../administracion/models/Prioridad.js';
 
 // Relación: Una sucursal tiene muchas categorías
 Sucursal.hasMany(ActCategoria, { foreignKey: 'sucursalId', as: 'categorias' });
@@ -52,5 +54,12 @@ Finca.hasMany(Programacion, { foreignKey: 'fincaId', as: 'programaciones' });
 Programacion.belongsTo(Actividad, { foreignKey: 'actividadId', as: 'actividad' });
 Actividad.hasMany(Programacion, { foreignKey: 'actividadId', as: 'programaciones' });
 
+// Relación: Programación pertenece a una actividad
+Programacion.belongsTo(Estado, { foreignKey: 'estadoId', as: 'estado' });
+Estado.hasMany(Programacion, { foreignKey: 'estadoId', as: 'programaciones' });
+
+// Relación: Programación pertenece a una actividad
+Programacion.belongsTo(Prioridad, { foreignKey: 'prioridadId', as: 'prioridad' });
+Prioridad.hasMany(Programacion, { foreignKey: 'prioridadId', as: 'programaciones' });
 
 export { Sucursal, ActCategoria, ActSubCategoria,Actividad};
