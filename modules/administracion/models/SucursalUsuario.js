@@ -1,7 +1,8 @@
 import { DataTypes } from "sequelize";
 import db from "../../../config/db.js";
-import User from "./User.js";
+
 import Sucursal from "./Sucursal.js";
+import User from "../../../auth/models/User.js";
 
 const SucursalUsuario = db.define('SucursalUsuarios', {
     id: {
