@@ -7,6 +7,11 @@ const Programacion = db.define('Programaciones', {
         primaryKey: true,
         autoIncrement: true
     },
+    programacion: {  
+        type: DataTypes.INTEGER, 
+        allowNull: true
+    },
+    
     fecha: {
         type: DataTypes.DATE,
         allowNull: true
