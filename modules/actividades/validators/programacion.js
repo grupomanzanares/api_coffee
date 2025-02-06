@@ -55,6 +55,8 @@ const validateCreateProgramacion = [
         .optional()
         .isString().withMessage('La observación debe ser una cadena de texto')
         .isLength({ max: 100 }).withMessage('La observación no puede exceder los 100 caracteres'),
+    body('programacion')
+        .optional(),
     body('maquina')
         .optional()
         .isString().withMessage('La máquina debe ser una cadena de texto')
