@@ -187,10 +187,17 @@ const recoverTokenConfirm = async (req, res) => {
     return res.json({ message: "Token válido", token });
 };
 
+
+
+
+
 /** Paso 3: Cambiar contraseña,  se solicita nuevo password y token */
 const recover = async (req, res) => {
 
-
+    req = matchedData(req)
+    const passwordHash = await encrypt(req.password)
+    const body = { ...req, password: passwordHash }
+    const { password, token } = req.body
     
     await check("password").isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres").run(req);
     let result = validationResult(req);
@@ -204,9 +211,8 @@ const recover = async (req, res) => {
     }
 
     
-    const passwordHash = await encrypt(req.password)
-    const body = { ...req, password: passwordHash }
-    const { password, token } = req.body;
+
+    ;
 
     user.token = null;
     await user.save();
@@ -214,7 +220,7 @@ const recover = async (req, res) => {
     return res.json({ message: "Contraseña actualizada correctamente" });
 };
 
-/** Olvido de Contraseña */
+ 
 
 export {
     login,
