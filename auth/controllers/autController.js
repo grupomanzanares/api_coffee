@@ -200,8 +200,7 @@ const recover = async (req, res) => {
     /** Encriptar Contraseña */
     const passwordHash = await encrypt(password)
 
-    /** Reemplazar contraseña en el body */
-    const body = { ...req, password: passwordHash }
+ 
     
     /** Chequear que el password cumpla con la */
     await check("password").isLength({ min: 10 }).withMessage("La contraseña debe tener al menos 6 caracteres").run(req);
@@ -215,7 +214,6 @@ const recover = async (req, res) => {
         return res.status(400).json({ message: "Token inválido o expirado" });
     }
 
-    console.log("encriptado", req.body)
     user.token = null;
     user.password = passwordHash
     await user.save();
