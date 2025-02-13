@@ -215,7 +215,7 @@ const recover = async (req, res) => {
         return res.status(400).json({ message: "Token inválido o expirado" });
     }
 
-
+    console.log("encriptado", req.body)
     user.token = null;
     user.password = passwordHash
     await user.save();
