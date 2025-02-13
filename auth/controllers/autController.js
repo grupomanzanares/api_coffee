@@ -194,14 +194,16 @@ const recoverTokenConfirm = async (req, res) => {
 /** Paso 3: Cambiar contraseña,  se solicita nuevo password y token */
 const recover = async (req, res) => {
 
-    
-    console.log("esta es el nuevo pass", req.body)
+    /*** Desestructurar datos */    
     const { password, token } = req.body
     
+    /** Encriptar Contraseña */
     const passwordHash = await encrypt(password)
+
+    /** Reemplazar contraseña en el body */
     const body = { ...req, password: passwordHash }
     
-    
+    /** Chequear que el password cumpla con la */
     await check("password").isLength({ min: 10 }).withMessage("La contraseña debe tener al menos 6 caracteres").run(req);
     let result = validationResult(req);
     if (!result.isEmpty()) {
@@ -213,17 +215,14 @@ const recover = async (req, res) => {
         return res.status(400).json({ message: "Token inválido o expirado" });
     }
 
-    
-
-    ;
 
     user.token = null;
+    user.password = body.password
     await user.save();
 
     return res.json({ message: "Contraseña actualizada correctamente" });
 };
 
- 
 
 export {
     login,

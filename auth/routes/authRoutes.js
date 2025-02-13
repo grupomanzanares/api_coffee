@@ -1,5 +1,5 @@
 import express, { response } from "express"
-import { validateLogin, validateRegister } from "../validators/auth.js"
+import { validateLogin, validateRecover, validateRegister } from "../validators/auth.js"
 import { login, register,generateToken, forgotPassword , recoverTokenConfirm, recover} from "../controllers/autController.js"
 
 
@@ -19,6 +19,6 @@ router.post("/forgot-password", forgotPassword);
 router.get("/forgot-password/:token", recoverTokenConfirm);
 
 /***Ruta para restablecer la contraseña con el nuevo password*/
-router.post("/reset-password", recover);
+router.post("/reset-password",validateRecover, recover);
 
 export default router

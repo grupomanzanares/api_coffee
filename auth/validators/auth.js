@@ -33,7 +33,25 @@ const validateLogin = [
     }
 ];
 
+
+
+const validateRecover = [
+    body('token').exists().notEmpty(),
+    body('password').exists().notEmpty(),
+
+    (req, res, next) =>{
+        try {
+            validationResult(req).throw()
+            return next()
+        } catch (error) {
+            res.status('403')
+            res.send({errors : error.array()}) 
+        } 
+    }
+];
+
 export {
     validateRegister,
-    validateLogin
+    validateLogin,
+    validateRecover
 };
