@@ -9,7 +9,8 @@ const emailRegister = async (data) => {
         auth: {
             user: process.env.EMAIL_USERNAME,
             pass: process.env.EMAIL_PASSWORD
-        }
+        },
+ 
     });
 
     const {email, name, token} = data
@@ -39,6 +40,9 @@ const emailRecoverPassword = async (data) => {
         auth: {
             user: process.env.EMAIL_USERNAME,
             pass: process.env.EMAIL_PASSWORD
+        },
+        tls: {
+            rejectUnauthorized: false // ⚠ Desactiva la verificación SSL (No recomendado en producción)
         }
     });
 
