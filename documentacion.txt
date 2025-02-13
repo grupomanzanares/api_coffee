@@ -77,3 +77,17 @@ Crear archivo de configuracion :   Carpeta config   -- archivo db.js,  configura
 
     npm install jsonwebtoken 
     JWT_SECRET = "clavesecreta"  parametrizar clave secreta en .env
+
+
+
+
+
+Envio de correos
+
+Correo
+Envio de correo: npm install nodemailer
+Revisar variables de entorno
+EMAIL_HOST='mail.invercerro.com'
+EMAIL_PORT=465
+EMAIL_USERNAME='informatica@invercerro.com'
+EMAIL_PASSWORD='WAGfybMz03*'
