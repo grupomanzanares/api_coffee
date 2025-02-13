@@ -217,7 +217,7 @@ const recover = async (req, res) => {
 
 
     user.token = null;
-    user.password = body.password
+    user.password = passwordHash
     await user.save();
 
     return res.json({ message: "Contraseña actualizada correctamente" });
