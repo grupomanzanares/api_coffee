@@ -128,34 +128,38 @@ const generateToken = async (req, res) => {
 /** Paso 1:  Solicitar recuperacion de contraseña cuando hay olvido */
 const forgotPassword = async(req, res) => {
 
+        /** Imprimir en consola lo recibido */
         console.log(req);
-        //extraer datos o desestructurar 
+
+
+        /**  Extraer datos o desestructurar */ 
         const {identificacion,name, email } = req.body;
 
-        //Validar
+        /**  Validar que vengan los datos requeridos */ 
         await check("identificacion").notEmpty().withMessage("La cédula es obligatoria").run(req);
         await check('email').isEmail().withMessage('No cumple con las características de un correo ').run(req)
         let result = validationResult(req)
     
-        //verificar que no hay errores
+        /** verificar que no hay errores  */
         if(!result.isEmpty()){
             return res.status(400).json({ errors: result.array() });
         }
 
-        //Si el formato del correo es correo Validar que exista en la base de datos
+        /** Buscar en la base de datos el usuario por identificacion y email */
         const user = await User.findOne({ where: {identificacion, email }})
-
         if(!user){
             return res.status(404).json({ message: "No se encontró un usuario con estos datos" });
         }
-
         console.log ("Usuario encontrado,  se procede a generar token para enviar en correo")
 
-        //Generar Nuevo token y enviar correo
+
+        /** Generar Nuevo token y enviar correo  */
         user.token= generatorId();
         await user.save();
+
+
     
-        //Enviar email de confirmación
+        /** Enviar email:  deben estar configurados en el .env las variables para el envio de correo */ 
         emailRecoverPassword({
             name: user.name,
             email: user.email,

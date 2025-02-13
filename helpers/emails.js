@@ -35,15 +35,19 @@ const emailRecoverPassword = async (data) => {
     const transport = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
+        secure: true, // true para 465, false para otros puertos
         auth: {
             user: process.env.EMAIL_USERNAME,
             pass: process.env.EMAIL_PASSWORD
+        },
+        tls: {
+            rejectUnauthorized: false // ⚠ Desactiva la verificación SSL (No recomendado en producción)
         }
     });
 
     const {email, name, token} = data
 
-    // Enviar el email
+    /**  Enviar email */
     await transport.sendMail({
         from: 'Ganaderia Manzanares',
         to: email,
