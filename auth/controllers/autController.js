@@ -194,11 +194,13 @@ const recoverTokenConfirm = async (req, res) => {
 /** Paso 3: Cambiar contraseña,  se solicita nuevo password y token */
 const recover = async (req, res) => {
 
- 
-    console.log("esta es el nuevo pass", req)
-    const passwordHash = await encrypt(req.password)
-    const body = { ...req, password: passwordHash }
+    
+    console.log("esta es el nuevo pass", req.body)
     const { password, token } = req.body
+    
+    const passwordHash = await encrypt(password)
+    const body = { ...req, password: passwordHash }
+    
     
     await check("password").isLength({ min: 10 }).withMessage("La contraseña debe tener al menos 6 caracteres").run(req);
     let result = validationResult(req);
