@@ -194,7 +194,7 @@ const recoverTokenConfirm = async (req, res) => {
 /** Paso 3: Cambiar contraseña,  se solicita nuevo password y token */
 const recover = async (req, res) => {
 
-    req = matchedData(req)
+ 
     console.log("esta es el nuevo pass", req)
     const passwordHash = await encrypt(req.password)
     const body = { ...req, password: passwordHash }
