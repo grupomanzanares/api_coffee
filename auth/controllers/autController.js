@@ -125,11 +125,12 @@ const generateToken = async (req, res) => {
 };
 
 
-const recoverPassword = async(req, res) => {
+/** Paso 1:  Solicitar recuperacion de contraseña cuando hay olvido */
+const forgotPassword = async(req, res) => {
 
-    console.log(req);
-    //extraer datos o desestructurar 
-    const {identificacion,name, email } = req.body;
+        console.log(req);
+        //extraer datos o desestructurar 
+        const {identificacion,name, email } = req.body;
 
         //Validar
         await check("identificacion").notEmpty().withMessage("La cédula es obligatoria").run(req);
@@ -147,6 +148,8 @@ const recoverPassword = async(req, res) => {
         if(!user){
             return res.status(404).json({ message: "No se encontró un usuario con estos datos" });
         }
+
+        console.log ("Usuario encontrado,  se procede a generar token para enviar en correo")
 
         //Generar Nuevo token y enviar correo
         user.token= generatorId();
@@ -204,5 +207,5 @@ export {
     login,
     register,
     generateToken,
-    recoverPassword,recoverTokenConfirm, recover
+    forgotPassword,recoverTokenConfirm, recover
 }

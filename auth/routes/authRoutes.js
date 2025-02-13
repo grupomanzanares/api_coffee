@@ -1,6 +1,6 @@
 import express, { response } from "express"
 import { validateLogin, validateRegister } from "../validators/auth.js"
-import { login, register,generateToken, recoverPassword , recoverTokenConfirm, recover} from "../controllers/autController.js"
+import { login, register,generateToken, forgotPassword , recoverTokenConfirm, recover} from "../controllers/autController.js"
 
 
 const router = express.Router()
@@ -12,8 +12,8 @@ router.post('/generate-token', generateToken);
 
 /*** Rutas olvido de contraseña */
 
-/*** Ruta para solicitar recuperación de contraseña*/
-router.post("/forgot-password", recoverPassword);
+/*** Ruta para solicitar recuperación de contraseña cuando se olvida*/
+router.post("/forgot-password", forgotPassword);
 
 /***Ruta para validar el token de recuperación*/
 router.get("/forgot-password/:token", recoverTokenConfirm);
