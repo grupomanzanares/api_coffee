@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'; // Importa jsonwebtoken
 import { encrypt, compare } from "../helpers/password.js"
 import { tokenSign } from "../../helpers/jwt.js"
 import { emailRecoverPassword } from "../../helpers/emails.js";
-
+import { check, validationResult } from "express-validator";
 
 const login = async (req, res) => {
     try {
