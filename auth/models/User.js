@@ -40,7 +40,9 @@ const User = db.define('users', {
         type: DataTypes.BOOLEAN, 
         allowNull: false,
         defaultValue: 1  
-    }
+    },
+    token: DataTypes.STRING,
+    confirmed: DataTypes.BOOLEAN
 
 }, {
     timestamps: true
