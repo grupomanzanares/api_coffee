@@ -22,7 +22,7 @@ const emailRegister = async (data) => {
         subject: 'Confirma tu cuenta en Bienes Raices',
         text:'Confirma tu cuenta en Bienes Raices',
         html: `
-            <p>Hola, ${name}, comprueba tu cuenta en Bienes Raices</p>
+            <p>Hola, ${name}, comprueba tu cuenta en Sistema de Trazabilidad </p>
 
             <p>Solo debes confirmar dando click en el siguiente enlace: <a href='${process.env.URL_BACKEND}:${process.env.PORT}/auth/confirm-register/${token}'>Confirmar Cuenta</a></p>
 
@@ -55,9 +55,9 @@ const emailRecoverPassword = async (data) => {
         subject: 'Reestablece tu Contraseña ',
         text:'Reestablece tu password',
         html: `
-            <p>Hola, ${name}, Has solicitado reestablecer tu contraseña en Bienes Raices</p>
+            <p>Hola, ${name}, Has solicitado reestablecer tu contraseña en sistema de Trazabilidad Ganaderìa Manzanares</p>
 
-            <p>Lo puedes realizar dando click en el siguiente enlace: <a href='${process.env.URL_BACKEND}:${process.env.PORT}/auth/confirm-recover/${token}'>Reestablecer Password </a></p>
+            <p>Lo puedes realizar dando click en el siguiente enlace: <a href='${process.env.URL_BACKEND}/auth/forgot-password/${token}'>Reestablecer Password </a></p>
 
             <p>Si tu no creaste esta cuenta, has caso omiso al mensaje.</p>
         `
