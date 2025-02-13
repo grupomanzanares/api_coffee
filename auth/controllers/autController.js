@@ -195,11 +195,12 @@ const recoverTokenConfirm = async (req, res) => {
 const recover = async (req, res) => {
 
     req = matchedData(req)
+    console.log("esta es el nuevo pass", req)
     const passwordHash = await encrypt(req.password)
     const body = { ...req, password: passwordHash }
     const { password, token } = req.body
     
-    await check("password").isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres").run(req);
+    await check("password").isLength({ min: 10 }).withMessage("La contraseña debe tener al menos 6 caracteres").run(req);
     let result = validationResult(req);
     if (!result.isEmpty()) {
         return res.status(400).json({ errors: result.array() });
