@@ -170,6 +170,11 @@ const forgotPassword = async(req, res) => {
 
 }
 
+/** Paso2 :  Validar si el token es correcto o no:   
+ * Debio llegar un email al usuario donde hay un link: ejemplo
+ * https://gmanzanares.com.co/auth/forgot-password/1ijvt4hlv9cd7ll3vp2
+ * Esta uncion recibe el token y valida que este guardado en la base de datos
+ */
 const recoverTokenConfirm = async (req, res) => {
     const { token } = req.params;
 
@@ -182,11 +187,12 @@ const recoverTokenConfirm = async (req, res) => {
     return res.json({ message: "Token válido", token });
 };
 
+/** Paso 3: Cambiar contraseña,  se solicita nuevo password y token */
 const recover = async (req, res) => {
-    const { password, token } = req.body;
 
+
+    
     await check("password").isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres").run(req);
-
     let result = validationResult(req);
     if (!result.isEmpty()) {
         return res.status(400).json({ errors: result.array() });
@@ -197,8 +203,11 @@ const recover = async (req, res) => {
         return res.status(400).json({ message: "Token inválido o expirado" });
     }
 
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(password, salt);
+    
+    const passwordHash = await encrypt(req.password)
+    const body = { ...req, password: passwordHash }
+    const { password, token } = req.body;
+
     user.token = null;
     await user.save();
 
