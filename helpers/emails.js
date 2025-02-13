@@ -17,7 +17,6 @@ const emailRegister = async (data) => {
     // Enviar el email
     await transport.sendMail({
         from: process.env.EMAIL_USERNAME,
-        // from: 'Bienes Raices',
         to: email,
         subject: 'Confirma tu cuenta en Bienes Raices',
         text:'Confirma tu cuenta en Bienes Raices',
@@ -35,13 +34,11 @@ const emailRecoverPassword = async (data) => {
     const transport = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
-        secure: true, // true para 465, false para otros puertos
+        secureConnection: true,
+        debug: true,
         auth: {
             user: process.env.EMAIL_USERNAME,
             pass: process.env.EMAIL_PASSWORD
-        },
-        tls: {
-            rejectUnauthorized: false // ⚠ Desactiva la verificación SSL (No recomendado en producción)
         }
     });
 
@@ -49,7 +46,7 @@ const emailRecoverPassword = async (data) => {
 
     /**  Enviar email */
     await transport.sendMail({
-        from: 'Ganaderia Manzanares',
+        from:  process.env.EMAIL_USERNAME,
         to: email,
         subject: 'Reestablece tu Contraseña ',
         text:'Reestablece tu password',
