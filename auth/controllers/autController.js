@@ -7,6 +7,7 @@ import { encrypt, compare } from "../helpers/password.js"
 import { tokenSign } from "../../helpers/jwt.js"
 import { emailRecoverPassword } from "../../helpers/emails.js";
 import { check, validationResult } from "express-validator";
+import { generatorId } from "../helpers/token.js";
 
 const login = async (req, res) => {
     try {
