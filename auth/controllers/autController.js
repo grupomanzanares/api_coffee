@@ -128,10 +128,10 @@ const recoverPassword = async(req, res) => {
 
     console.log(req);
     //extraer datos o desestructurar 
-    const {cedula,name, email } = req.body;
+    const {identificacion,name, email } = req.body;
 
         //Validar
-        await check("cedula").notEmpty().withMessage("La cédula es obligatoria").run(req);
+        await check("identificacion").notEmpty().withMessage("La cédula es obligatoria").run(req);
         await check('email').isEmail().withMessage('No cumple con las características de un correo ').run(req)
         let result = validationResult(req)
     
@@ -141,7 +141,7 @@ const recoverPassword = async(req, res) => {
         }
 
         //Si el formato del correo es correo Validar que exista en la base de datos
-        const user = await User.findOne({ where: {cedula, email }})
+        const user = await User.findOne({ where: {identificacion, email }})
 
         if(!user){
             return res.status(404).json({ message: "No se encontró un usuario con estos datos" });
