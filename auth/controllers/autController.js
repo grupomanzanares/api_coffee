@@ -128,7 +128,7 @@ const recoverPassword = async(req, res) => {
 
     console.log(req);
     //extraer datos o desestructurar 
-    const {cedula,name, email,   password } = req.body;
+    const {cedula,name, email } = req.body;
 
         //Validar
         await check("cedula").notEmpty().withMessage("La cédula es obligatoria").run(req);
