@@ -57,6 +57,7 @@ const emailRecoverPassword = async (data) => {
         html: `
             <p>Hola, ${name}, Has solicitado reestablecer tu contraseña en sistema de Trazabilidad Ganaderìa Manzanares</p>
 
+            
             <p>Lo puedes realizar dando click en el siguiente enlace: <a href='${process.env.URL_BACKEND}/auth/reset-password/${token}'>Reestablecer Password </a></p>
 
             <p>Si tu no creaste esta cuenta, has caso omiso al mensaje.</p>
