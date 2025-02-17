@@ -57,7 +57,7 @@ const deleteUser = async(req, res) =>{
 
         // Eliminamos el usuario
         const [response]  = await User.update({state: false }, {
-            where: { id, state: true } // Con el id que estraemos eliminamos al usuario
+            where: { identificacion, state: true } // Con el id que estraemos eliminamos al usuario
         })
         console.log (response)
 
