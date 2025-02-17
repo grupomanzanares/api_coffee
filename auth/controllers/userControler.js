@@ -52,11 +52,11 @@ const createUser = async(req, res) =>{
 
 const deleteUser = async(req, res) =>{
     try {
-        const { id } = req.params// Estraemos el Id 
-        console.log(id)
+        const { identificacion } = req.params// Estraemos el Id 
+        console.log(identificacion)
 
         // Eliminamos el usuario
-        const [response]  = await User.update({state: false }, {
+        const response  = await User.update({state: false }, {
             where: { identificacion, state: true } // Con el id que estraemos eliminamos al usuario
         })
         console.log (response)
