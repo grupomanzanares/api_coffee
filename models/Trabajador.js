@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import db from "../config/db.js";
 import TiposIdentificacion from "./TiposIdentificacion.js";
 
-const Trabajador = db.define('Trabajador', {
+const Trabajador = db.define('Trabajadores', {
     nit: {
         type: DataTypes.STRING(15),
         primaryKey: true,
@@ -31,7 +31,8 @@ const Trabajador = db.define('Trabajador', {
     }
 },
 {
-    timestamps: true
+    timestamps: true,
+    freezeTableName: true // Evita que Sequelize pluralice el nombre de la tabla
 });
 
 
