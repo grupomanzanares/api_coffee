@@ -4,9 +4,9 @@ import Trabajador from '../models/Trabajador.js'
 
 const getTrabajadores = async (req, res) => {
     try {
-        const Trabajador = await Trabajador.findAll({
+        const registros = await Trabajador.findAll({
         })
-        res.json(Trabajador)
+        res.json(registros)
     } catch (error) {
         handleHttpError(res, 'No se pudo cargar los Trabajadores')
     }
