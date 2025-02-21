@@ -1,5 +1,5 @@
 import express from 'express';
-import { createRecolector, deleteRecolector, getRecolector, getRecolectores, updateRecolector } from '../controllers/RecolectorController.js';
+import { createRecolector, deleteRecolector, getRecolector, getRecolectores, updateRecolector } from '../controllers/recolectorController.js';
 import { validateCreateRecolector, validateGetRecolector } from '../validators/recolectores.js';
 
 const router = express.Router()

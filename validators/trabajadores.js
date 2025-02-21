@@ -1,6 +1,6 @@
 import { body, check, validationResult } from "express-validator";
 
-const validateCreateRecolector = [
+const validateCreateTrabajador = [
     body('nit').exists().notEmpty().isLength({min: 6, max: 10}),
     body('nombre').exists().notEmpty(),
     body('tipoIdentificacion').exists().notEmpty(),
@@ -16,7 +16,7 @@ const validateCreateRecolector = [
     }
 ];
 
-const validateGetRecolector = [
+const validateGetTrabajador = [
     check('nit').exists().notEmpty(),
 
     (req, res, next) => {
@@ -31,6 +31,6 @@ const validateGetRecolector = [
 ]
 
 export{
-    validateCreateRecolector,
-    validateGetRecolector
+    validateCreateTrabajador,
+    validateGetTrabajador
 }
