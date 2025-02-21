@@ -39,6 +39,8 @@ import recolectorRoutes from './routes/recolectorRoutes.js'
 import recoleccionRoutes from './routes/recoleccionRoutes.js'
 import consecutivoRoutes from './routes/consecutivoRoutes.js'
 import maquinaRoutes from './routes/maquinaRoutes.js'
+import trabajadorRoutes from './routes/trabajadorRoutes.js'
+
 
 /*** Crear app   */
 const app = express();
@@ -86,6 +88,7 @@ app.use('/actividad', ActividadRoutes)
 app.use('/estado', estadoRoutes)
 app.use('/prioridad', prioridadRoutes)
 app.use('/programacion', ProgramacionRoutes)
+app.use('/trabajador', recolectorRoutes)
 
 app.use('/unidad', unidadRoutes)
 /***
