@@ -1,6 +1,6 @@
 import express from 'express';
 import { createTrabajador, deleteTrabajador, getTrabajador, getTrabajadores, updateTrabajador } from '../controllers/trabajadorController.js';
-import { validateCreateTrabajador, validateGetTrabajador } from '../validators/Trabajadores.js';
+import { validateCreateTrabajador, validateGetTrabajador } from '../validators/trabajadores.js';
 
 const router = express.Router()
 
