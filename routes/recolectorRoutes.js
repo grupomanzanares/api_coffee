@@ -1,13 +1,13 @@
 import express from 'express';
-import { createTrabajador, deleteTrabajador, getTrabajador, getTrabajadores, updateTrabajador } from '../controllers/trabajadorController.js';
-import { validateCreateTrabajador, validateGetTrabajador } from '../validators/Trabajadores.js';
+import { createRecolector, deleteRecolector, getRecolector, getRecolectores, updateRecolector } from '../controllers/RecolectorController.js';
+import { validateCreateRecolector, validateGetRecolector } from '../validators/recolectores.js';
 
 const router = express.Router()
 
-router.get('/', getTrabajadores)
-router.get('/:nit', validateGetTrabajador, getTrabajador)
-router.post('/create',  validateCreateTrabajador, createTrabajador)
-router.put('/update/:nit', updateTrabajador)
-router.delete('/delete/:nit', deleteTrabajador)
+router.get('/', getRecolectores)
+router.get('/:nit', validateGetRecolector, getRecolector)
+router.post('/create',  validateCreateRecolector, createRecolector)
+router.put('/update/:nit', updateRecolector)
+router.delete('/delete/:nit', deleteRecolector)
 
 export default router
