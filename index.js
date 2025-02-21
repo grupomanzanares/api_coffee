@@ -88,8 +88,9 @@ app.use('/actividad', ActividadRoutes)
 app.use('/estado', estadoRoutes)
 app.use('/prioridad', prioridadRoutes)
 app.use('/programacion', ProgramacionRoutes)
-app.use('/trabajador', recolectorRoutes)
+app.use('/trabajador', trabajadorRoutes)
 
+// kk
 app.use('/unidad', unidadRoutes)
 /***
  * Configurar puerto y levantar servidor
