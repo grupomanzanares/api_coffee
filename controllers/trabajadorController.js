@@ -5,7 +5,6 @@ import Trabajador from '../models/Trabajador.js'
 const getTrabajadores = async (req, res) => {
     try {
         const Trabajador = await Trabajador.findAll({
-            where: {habilitado: true}
         })
         res.json(Trabajador)
     } catch (error) {
