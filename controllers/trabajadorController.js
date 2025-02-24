@@ -74,16 +74,16 @@ const deleteTrabajador = async (req, res) => {
 const updateTrabajador = async (req, res) => {
     try {
         // Obtener el NIT desde los parámetros de la URL
-        const { nit } = req.params;
+        const { id } = req.params;
         
         // Extraer los datos del cuerpo de la solicitud
         const body = req.body;
         console.log('Datos recibidos para actualización:', body);
-        console.log('NIT recibido:', nit);  // Verificar si el NIT se recibe correctamente
+
 
         // Realizamos la actualización
         const [rowsUpdated] = await Trabajador.update(body, {
-            where: { nit }
+            where: { id }
         });
 
         console.log('Filas afectadas:', rowsUpdated); // Verificar cuántas filas fueron afectadas
@@ -96,7 +96,7 @@ const updateTrabajador = async (req, res) => {
         }
 
         // Obtener el Trabajador actualizado
-        const updatedTrabajador = await Trabajador.findByPk(nit);
+        const updatedTrabajador = await Trabajador.findByPk(id);
         console.log('Trabajador actualizado:', updatedTrabajador); // Verificar si los datos actualizados se obtienen correctamente
 
         // Enviar respuesta con los datos actualizados
