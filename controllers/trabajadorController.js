@@ -50,11 +50,11 @@ const createTrabajador = async (req, res) => {
 
 const deleteTrabajador = async (req, res) => {
     try {
-        const { nit } = req.params
-        console.log(nit)
+        const { id } = req.params
+        console.log(id)
 
         const response = await Trabajador.update({habilitado: false}, {
-            where: {nit, habilitado: true}
+            where: {id, habilitado: true}
         })
 
         if (response === 0) {
