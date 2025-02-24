@@ -5,9 +5,9 @@ import { validateCreateTrabajador, validateGetTrabajador } from '../validators/t
 const router = express.Router()
 
 router.get('/', getTrabajadores)
-router.get('/:nit', validateGetTrabajador, getTrabajador)
+router.get('/:id', validateGetTrabajador, getTrabajador)
 router.post('/create',  validateCreateTrabajador, createTrabajador)
-router.put('/update/:nit', updateTrabajador)
+router.put('/:id', updateTrabajador)
 router.delete('/delete/:nit', deleteTrabajador)
 
 export default router
