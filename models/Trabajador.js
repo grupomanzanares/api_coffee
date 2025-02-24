@@ -3,6 +3,11 @@ import db from "../config/db.js";
 import TiposIdentificacion from "./TiposIdentificacion.js";
 
 const Trabajador = db.define('Trabajadores', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     nit: {
         type: DataTypes.STRING(15),
         primaryKey: true,
