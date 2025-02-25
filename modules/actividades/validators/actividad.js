@@ -11,6 +11,8 @@ const validateCreateActividad = [
         .isLength({ max: 150 }).withMessage('La descripción no puede superar los 150 caracteres'),
     body('controlPorLote')
         .exists().withMessage('Control por lote'),
+    body('controlPorTrabajador')
+        .exists().withMessage('Control por trabajador'),
     body('usuario')
         .optional()
         .isString().withMessage('El usuario debe ser una cadena de texto'),
@@ -23,7 +25,7 @@ const validateCreateActividad = [
     body('subCategoriaId')
         .exists().withMessage('El subCategoriaId es obligatorio')
         .isInt().withMessage('El subCategoriaId debe ser un número entero válido'),
-      (req, res, next) => {
+        (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(403).json({ errors: errors.array() });

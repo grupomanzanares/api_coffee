@@ -21,6 +21,12 @@ const Actividad = db.define('Actividades', {
         type: DataTypes.BOOLEAN,
         allowNull: false
     },
+
+    controlPorTrabajador: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    },
+
     habilitado:{
         type: DataTypes.BOOLEAN, 
         allowNull: false,

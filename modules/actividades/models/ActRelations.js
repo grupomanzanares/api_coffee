@@ -62,4 +62,7 @@ Estado.hasMany(Programacion, { foreignKey: 'estadoId', as: 'programaciones' });
 Programacion.belongsTo(Prioridad, { foreignKey: 'prioridadId', as: 'prioridad' });
 Prioridad.hasMany(Programacion, { foreignKey: 'prioridadId', as: 'programaciones' });
 
+
+
+
 export { Sucursal, ActCategoria, ActSubCategoria,Actividad};

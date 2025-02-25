@@ -20,6 +20,11 @@ const Programacion = db.define('Programaciones', {
         type: DataTypes.STRING(3),
         allowNull: true
     },
+
+    trabajador: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
     jornal: {
         type: DataTypes.NUMERIC(16, 2),
         allowNull: true

@@ -7,6 +7,9 @@ const validateCreateProgramacion = [
         .optional()
         .isString().withMessage('El lote debe ser una cadena de texto')
         .isLength({ max: 3 }).withMessage('El lote no puede exceder los 3 caracteres'),
+    body('trabajador')
+        .optional(),
+        isInt().withMessage('El Trabajador debe ser un número entero válido'),
     body('jornal')
         .optional()
         .isNumeric().withMessage('El jornal debe ser un número válido')
