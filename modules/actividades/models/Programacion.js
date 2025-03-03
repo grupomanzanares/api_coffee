@@ -17,7 +17,7 @@ const Programacion = db.define('Programaciones', {
         allowNull: true
     },
     lote: {
-        type: DataTypes.STRING(3),
+        type: DataTypes.STRING(50),
         allowNull: true
     },
 
