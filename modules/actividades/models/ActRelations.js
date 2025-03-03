@@ -68,3 +68,5 @@ Prioridad.hasMany(Programacion, { foreignKey: 'prioridadId', as: 'programaciones
 
 
 export { Sucursal, ActCategoria, ActSubCategoria,Actividad};
+
+// hola
