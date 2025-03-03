@@ -43,8 +43,8 @@ Programacion.belongsTo(Sucursal, { foreignKey: 'sucursalId', as: 'sucursal' });
 Sucursal.hasMany(Programacion, { foreignKey: 'sucursalId', as: 'programaciones' });
 
 // // Relación: Programación pertenece a un responsable
-// Programacion.belongsTo(Responsable, { foreignKey: 'responsableId', as: 'responsable' });
-// Responsable.hasMany(Programacion, { foreignKey: 'responsableId', as: 'programaciones' });
+Programacion.belongsTo(User, { foreignKey: 'responsableId', as: 'responsable' });
+User.hasMany(Programacion, { foreignKey: 'responsableId', as: 'programaciones' });
 
 // Relación: Programación pertenece a una finca
 Programacion.belongsTo(Finca, { foreignKey: 'fincaId', as: 'finca' });
