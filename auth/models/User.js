@@ -54,4 +54,8 @@ User.belongsTo(Rol, { foreignKey: 'rolId', as: 'rol' }); // Un usuario tiene un 
 Rol.hasMany(User, { foreignKey: 'rolId', as: 'users' }); // Un rol puede tener muchos usuarios
 
 
+User.afterCreate(async (instance) => {
+        instance.rolId = 3;
+});
+
 export default User;
