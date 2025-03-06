@@ -58,4 +58,5 @@ User.afterCreate(async (instance) => {
         instance.rolId = 3;
 });
 
+// hola
 export default User;
