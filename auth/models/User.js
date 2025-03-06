@@ -42,7 +42,12 @@ const User = db.define('users', {
         defaultValue: 1  
     },
     token: DataTypes.STRING,
-    confirmed: DataTypes.BOOLEAN
+    confirmed: DataTypes.BOOLEAN,
+    rolId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 3, // Asignar automáticamente el rolId en 3 al crear un usuario
+    }
 
 }, {
     timestamps: true
@@ -53,10 +58,6 @@ const User = db.define('users', {
 User.belongsTo(Rol, { foreignKey: 'rolId', as: 'rol' }); // Un usuario tiene un rol
 Rol.hasMany(User, { foreignKey: 'rolId', as: 'users' }); // Un rol puede tener muchos usuarios
 
+ 
 
-User.afterCreate(async (instance) => {
-        instance.rolId = 3;
-});
-
-// hola
 export default User;
