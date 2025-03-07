@@ -1,6 +1,7 @@
 import { matchedData } from "express-validator";
 import { handleHttpError } from "../../../helpers/httperror.js";
 import Actividad from "../models/Actividad.js";
+import ActSubCategoria from "../models/ActSubCategoria.js";
 
 
 const entity = "Actividad"
@@ -8,7 +9,13 @@ const entity = "Actividad"
 const getActividades = async (req, res) =>{
     try {
         const registros = await Actividad.findAll({
-            where: {habilitado: true}
+            where: {habilitado: true},
+            include: [
+                {
+                    model: ActSubCategoria, as: 'subcategoria',
+                    attributes: ["nombre"]
+                } 
+            ]
         });
         res.json(registros)
     }catch{
