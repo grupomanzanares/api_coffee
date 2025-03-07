@@ -40,7 +40,7 @@ import recoleccionRoutes from './routes/recoleccionRoutes.js'
 import consecutivoRoutes from './routes/consecutivoRoutes.js'
 import maquinaRoutes from './routes/maquinaRoutes.js'
 import trabajadorRoutes from './routes/trabajadorRoutes.js'
-import rolRoutes from './routes/rolRoutes.js'
+import rolRoutes from './auth/routes/rolRoutes.js'
 
 /*** Crear app   */
 const app = express();
