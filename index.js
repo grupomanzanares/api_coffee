@@ -106,5 +106,5 @@ app.listen(port, () => {
  * Ruta principal
  */
 app.get('/', (req, res) => {
-  res.send("Bienvenidos a Grupo Empresarial Ganaderia Manzanares:  En Construccion");
+  res.send("Bienvenidos a Grupo Empresarial Ganaderia Manzanares:  En Construccion...");
 });
