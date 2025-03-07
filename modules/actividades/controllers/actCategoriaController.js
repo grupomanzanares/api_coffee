@@ -10,7 +10,7 @@ const getActCategorias = async (req, res) =>{
             where: {habilitado: true},
             include: [
                 {
-                    model: Sucursal, as: 'categorias',
+                    model: Sucursal, as: 'sucursal',
                     attributes: ["nombre"]
                 } 
             ]
