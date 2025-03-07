@@ -21,7 +21,7 @@ const getActividades = async (req, res) =>{
                         {
                             model: ActCategoria,
                             as: 'categoria', // Debe coincidir con el alias en la relación
-                            attributes: ["descripcion"]
+                            attributes: ["nombre"]
                         }
                     ]
                 },
