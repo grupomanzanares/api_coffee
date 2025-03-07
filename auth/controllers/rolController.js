@@ -1,5 +1,5 @@
 import { matchedData } from "express-validator";
-import { handleHttpError } from "../../../helpers/httperror.js";
+import { handleHttpError } from "../../helpers/httperror.js";
 import Rol from "../models/Rol.js";
 
 const entity = "Rol"
