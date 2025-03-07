@@ -95,7 +95,7 @@ app.use('/unidad', unidadRoutes)
 app.use('/rol', rolRoutes)
 
 /***
- * Configurar puerto y levantar servidor
+ * Configurar puerto y levantar servidor....
  */  
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
@@ -103,7 +103,7 @@ app.listen(port, () => {
 });
 
 /***
- * Ruta principal
+ * Ruta principal....
  */
 app.get('/', (req, res) => {
   res.send("Bienvenidos a Grupo Empresarial Ganaderia Manzanares:  En Construccion...");
