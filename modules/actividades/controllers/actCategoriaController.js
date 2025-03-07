@@ -10,7 +10,7 @@ const getActCategorias = async (req, res) =>{
             where: {habilitado: true},
             include: [
                 {
-                    model: Sucursal, as: 'sucursal',
+                    model: Sucursal, as: 'categorias',
                     attributes: ["nombre"]
                 } 
             ]
@@ -30,7 +30,13 @@ const getActCategoria = async(req, res) => {
             where: {
                 id: id,
                 habilitado: true
-            }
+            },
+            include: [
+                {
+                    model: Sucursal, as: 'sucursal',
+                    attributes: ["nombre"]
+                } 
+            ]
         })
         if (!data){
             return res.status(404).json({
