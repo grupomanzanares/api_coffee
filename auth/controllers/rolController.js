@@ -8,7 +8,7 @@ const entity = "Rol"
 const getRoles = async (req, res) =>{
     try {
         const registros = await Rol.findAll({
-            where: {habilitado: true}
+        
         });
         res.json(registros)
     }catch{
@@ -23,8 +23,7 @@ const getRol = async(req, res) => {
         const { id } = req
         const data = await Rol.findOne({
             where: {
-                id: id,
-                habilitado: true
+                id: id
             }
         })
         if (!data){
