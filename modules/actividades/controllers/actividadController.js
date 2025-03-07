@@ -3,6 +3,7 @@ import { handleHttpError } from "../../../helpers/httperror.js";
 import Actividad from "../models/Actividad.js";
 import ActSubCategoria from "../models/ActSubCategoria.js";
 import ActCategoria from "../models/ActCategoria.js";
+import Unidad from "../../administracion/models/Unidad.js";
 
 
 const entity = "Actividad"
@@ -23,7 +24,11 @@ const getActividades = async (req, res) =>{
                             attributes: ["descripcion"]
                         }
                     ]
-                }
+                },
+                {
+                    model: Unidad, as: 'unidad',
+                    attributes: ["nombre"]
+                } 
             ]
         });
         res.json(registros)
