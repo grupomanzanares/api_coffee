@@ -11,7 +11,7 @@ const getActCategorias = async (req, res) =>{
             include: [
                 {
                     model: Sucursal,
-                    attributes: ["name"]
+                    attributes: ["nombre"]
                 } 
             ]
         });
