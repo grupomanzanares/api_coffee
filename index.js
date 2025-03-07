@@ -40,7 +40,7 @@ import recoleccionRoutes from './routes/recoleccionRoutes.js'
 import consecutivoRoutes from './routes/consecutivoRoutes.js'
 import maquinaRoutes from './routes/maquinaRoutes.js'
 import trabajadorRoutes from './routes/trabajadorRoutes.js'
-
+import rolRoutes from './routes/rolRoutes.js'
 
 /*** Crear app   */
 const app = express();
@@ -92,6 +92,8 @@ app.use('/trabajador', trabajadorRoutes)
 
 // kk
 app.use('/unidad', unidadRoutes)
+app.use('/rol', rolRoutes)
+
 /***
  * Configurar puerto y levantar servidor
  */  
@@ -104,5 +106,5 @@ app.listen(port, () => {
  * Ruta principal
  */
 app.get('/', (req, res) => {
-  res.send("Hola mundo desde Silicon Valey");
+  res.send("Bienvenidos a Grupo Empresarial Ganaderia Manzanares:  En Construccion");
 });
