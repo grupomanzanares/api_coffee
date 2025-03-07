@@ -2,6 +2,7 @@ import { matchedData } from "express-validator";
 import { handleHttpError } from "../../helpers/httperror.js";
 import Rol from "../models/Rol.js";
 
+// hola
 const entity = "Rol"
 
 const getRoles = async (req, res) =>{
