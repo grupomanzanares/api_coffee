@@ -1,7 +1,7 @@
 import express from "express"
 
 import { apiAuth } from '../middleware/apiauth.js'
-import { getRol, getRoles } from "../controllers/rolController.js";
+import { deleteRol, getRol, getRoles } from "../controllers/rolController.js";
 
 const router = express.Router()
 
