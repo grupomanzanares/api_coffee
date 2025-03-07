@@ -6,6 +6,9 @@ const validateCreateUser = [
     body('email').exists().notEmpty().isEmail(),
     body('celphone').exists().notEmpty(),
 
+    // y el rol?
+    // y si el usuario quiere cambiar el password
+
     (req, res, next) =>{
         try {
             validationResult(req).throw()
