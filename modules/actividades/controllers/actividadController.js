@@ -2,6 +2,7 @@ import { matchedData } from "express-validator";
 import { handleHttpError } from "../../../helpers/httperror.js";
 import Actividad from "../models/Actividad.js";
 import ActSubCategoria from "../models/ActSubCategoria.js";
+import ActCategoria from "../models/ActCategoria.js";
 
 
 const entity = "Actividad"
@@ -12,9 +13,17 @@ const getActividades = async (req, res) =>{
             where: {habilitado: true},
             include: [
                 {
-                    model: ActSubCategoria, as: 'subcategoria',
-                    attributes: ["nombre"]
-                } 
+                    model: ActSubCategoria,
+                    as: 'subcategoria',
+                    attributes: ["nombre"],
+                    include: [
+                        {
+                            model: ActCategoria,
+                            as: 'categoria', // Debe coincidir con el alias en la relación
+                            attributes: ["descripcion"]
+                        }
+                    ]
+                }
             ]
         });
         res.json(registros)
