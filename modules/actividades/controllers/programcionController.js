@@ -2,6 +2,7 @@ import { matchedData } from "express-validator";
 import { handleHttpError } from "../../../helpers/httperror.js";
 import Programacion from "../models/Programacion.js";
 import { Sucursal } from "../models/ActRelations.js";
+import User from "../../../auth/models/User.js";
 
 
 const entity = "Programacion"
@@ -13,6 +14,12 @@ const getProgramaciones = async (req, res) =>{
             include: [
                 {
                     model: Sucursal, as: 'sucursal',
+                    attributes: ["nombre"]
+                } 
+            ],
+            include: [
+                {
+                    model: User, as: 'responsable',
                     attributes: ["nombre"]
                 } 
             ]
