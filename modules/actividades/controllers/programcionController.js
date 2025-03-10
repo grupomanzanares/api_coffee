@@ -1,6 +1,7 @@
 import { matchedData } from "express-validator";
 import { handleHttpError } from "../../../helpers/httperror.js";
 import Programacion from "../models/Programacion.js";
+import { Sucursal } from "../models/ActRelations.js";
 
 
 const entity = "Programacion"
@@ -8,7 +9,14 @@ const entity = "Programacion"
 const getProgramaciones = async (req, res) =>{
     try {
         const registros = await Programacion.findAll({
-            where: {habilitado: true}
+            where: {habilitado: true},
+            include: [
+                {
+                    model: Sucursal, as: 'sucursal',
+                    attributes: ["nombre"]
+                } 
+            ]
+
         });
         res.json(registros)
     }catch{
