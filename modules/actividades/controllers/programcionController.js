@@ -3,6 +3,7 @@ import { handleHttpError } from "../../../helpers/httperror.js";
 import Programacion from "../models/Programacion.js";
 import { Sucursal } from "../models/ActRelations.js";
 import User from "../../../auth/models/User.js";
+import Prioridad from "../../administracion/models/Prioridad.js";
 
 
 const entity = "Programacion"
@@ -19,7 +20,11 @@ const getProgramaciones = async (req, res) =>{
                 {
                     model: User, as: 'responsable',
                     attributes: ["name"]
-                } 
+                },
+                {
+                    model: Prioridad, as: 'prioridad',
+                    attributes: ["nombre"]
+                },
             ],
      
 
