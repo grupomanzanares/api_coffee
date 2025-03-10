@@ -4,6 +4,7 @@ import Programacion from "../models/Programacion.js";
 import { Sucursal } from "../models/ActRelations.js";
 import User from "../../../auth/models/User.js";
 import Prioridad from "../../administracion/models/Prioridad.js";
+import Estado from "../../administracion/models/Estado.js";
 
 
 const entity = "Programacion"
@@ -23,6 +24,11 @@ const getProgramaciones = async (req, res) =>{
                 },
                 {
                     model: Prioridad, as: 'prioridad',
+                    attributes: ["nombre"]
+                },
+
+                {
+                    model: Estado, as: 'estado',
                     attributes: ["nombre"]
                 },
             ],
