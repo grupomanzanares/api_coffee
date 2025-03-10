@@ -15,14 +15,13 @@ const getProgramaciones = async (req, res) =>{
                 {
                     model: Sucursal, as: 'sucursal',
                     attributes: ["nombre"]
-                } 
-            ],
-            include: [
+                },
                 {
                     model: User, as: 'responsable',
                     attributes: ["name"]
                 } 
-            ]
+            ],
+     
 
         });
         res.json(registros)
