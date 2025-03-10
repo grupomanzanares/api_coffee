@@ -20,7 +20,7 @@ const getProgramaciones = async (req, res) =>{
             include: [
                 {
                     model: User, as: 'responsable',
-                    attributes: ["nombre"]
+                    attributes: ["name"]
                 } 
             ]
 
