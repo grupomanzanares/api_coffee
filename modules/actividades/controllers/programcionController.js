@@ -41,7 +41,7 @@ const getProgramaciones = async (req, res) =>{
                     attributes: ["nombre"]
                 },
             ],
-     
+
 
         });
         res.json(registros)

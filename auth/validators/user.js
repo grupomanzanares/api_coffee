@@ -21,6 +21,26 @@ const validateCreateUser = [
 ];
 
 
+const validateUpdateUser = [
+    body('rolId').exists().notEmpty(),
+    body('name').exists().notEmpty().isLength({min: 5, max: 100}),
+    body('email').exists().notEmpty().isEmail(),
+    body('celphone').exists().notEmpty(),
+
+    // y el rol?
+    // y si el usuario quiere cambiar el password
+
+    (req, res, next) =>{
+        try {
+            validationResult(req).throw()
+            return next()
+        } catch (error) {
+            res.status('403')
+            res.send({errors : error.array()}) 
+        } 
+    }
+];
+
 
 
 
@@ -40,5 +60,6 @@ const validateGetUser = [
 
 export {
     validateCreateUser,
+    validateUpdateUser,
     validateGetUser
 };
