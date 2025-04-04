@@ -62,7 +62,7 @@ const Programacion = db.define('Programaciones', {
         allowNull: true
     },
     usuario: {
-        type: DataTypes.STRING(15),
+        type: DataTypes.STRING(50),
         allowNull: true
     },
     usuarioMod: {

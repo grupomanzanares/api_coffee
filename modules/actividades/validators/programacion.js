@@ -66,7 +66,7 @@ const validateCreateProgramacion = [
     body('usuario')
         .optional()
         .isString().withMessage('El usuario debe ser una cadena de texto')
-        .isLength({ max: 15 }).withMessage('El usuario no puede exceder los 15 caracteres'),
+        .isLength({ max: 50 }).withMessage('El usuario no puede exceder los 15 caracteres'),
     body('usuarioMod')
         .optional()
         .isString().withMessage('El usuarioMod debe ser una cadena de texto')
