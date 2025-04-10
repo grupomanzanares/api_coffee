@@ -14,7 +14,7 @@ const validateCreateProgramacion = [
         .isNumeric().withMessage('El jornal debe ser un número válido')
         .custom(value => value >= 0).withMessage('El jornal no puede ser negativo'),
     body('cantidad')
-        .exists().withMessage('La cantidad es obligatoria')
+        .optional()
         .isNumeric().withMessage('La cantidad debe ser un número válido')
         .custom(value => value > 0).withMessage('La cantidad debe ser mayor a cero'),
 
