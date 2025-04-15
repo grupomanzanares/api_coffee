@@ -97,19 +97,28 @@ const createProgramacion = async (req, res) => {
         const { trabajadores, ...programacionData } = matchedData(req);
         transaction = await sequelize.transaction();
 
-        // Crear la programación
         const nuevaProgramacion = await Programacion.create(programacionData, { transaction });
 
-        // Crear trabajadores si vienen
+        // Asigna el mismo ID si signo === 1
+        if (nuevaProgramacion.signo === 1) {
+            await nuevaProgramacion.update(
+                { programacion: nuevaProgramacion.id },
+                { transaction }
+            );
+        }
+
+        // Agregar trabajadores si se reciben
         if (Array.isArray(trabajadores) && trabajadores.length > 0) {
-            const registrosTrabajadores = trabajadores.map(t => ({
+            const datosTrabajadores = trabajadores.map(t => ({
                 programacionId: nuevaProgramacion.id,
                 trabajadorId: t.trabajadorId,
+                jornal: t.jornal,
+                cantidad: t.cantidad,
+                observacion: t.observacion,
                 usuario: programacionData.usuario,
                 usuarioMod: programacionData.usuarioMod
             }));
-
-            await ProgramacionTrabajador.bulkCreate(registrosTrabajadores, { transaction });
+            await ProgramacionTrabajador.bulkCreate(datosTrabajadores, { transaction });
         }
 
         await transaction.commit();
@@ -118,7 +127,7 @@ const createProgramacion = async (req, res) => {
     } catch (error) {
         if (transaction) await transaction.rollback();
         console.error("Error en createProgramacion:", error);
-        handleHttpError(res, `No se pudo crear ${entity}`);
+        handleHttpError(res, `No se pudo crear Programación`);
     }
 };
 
@@ -141,11 +150,19 @@ const updateProgramacion = async (req, res) => {
         if (updateResult[0] === 0) {
             await transaction.rollback();
             return res.status(404).json({
-                message: ` ${entity} No encontrado o No se realizaron cambios `
+                message: `Programación no encontrada o sin cambios`
             });
         }
 
-        // Si vienen trabajadores, borrar y volver a insertar
+        // Si signo = 1 y programacion está en null, actualizamos programacion = id
+        if (programacionData.signo === 1) {
+            await Programacion.update(
+                { programacion: id },
+                { where: { id }, transaction }
+            );
+        }
+
+        // Actualizar trabajadores si se reciben
         if (Array.isArray(trabajadores)) {
             await ProgramacionTrabajador.destroy({
                 where: { programacionId: id },
@@ -153,13 +170,16 @@ const updateProgramacion = async (req, res) => {
             });
 
             if (trabajadores.length > 0) {
-                const nuevos = trabajadores.map(t => ({
+                const nuevosTrabajadores = trabajadores.map(t => ({
                     programacionId: id,
                     trabajadorId: t.trabajadorId,
+                    jornal: t.jornal,
+                    cantidad: t.cantidad,
+                    observacion: t.observacion,
                     usuario: programacionData.usuario,
                     usuarioMod: programacionData.usuarioMod
                 }));
-                await ProgramacionTrabajador.bulkCreate(nuevos, { transaction });
+                await ProgramacionTrabajador.bulkCreate(nuevosTrabajadores, { transaction });
             }
         }
 
@@ -167,14 +187,14 @@ const updateProgramacion = async (req, res) => {
 
         const actualizada = await Programacion.findByPk(id);
         res.status(200).json({
-            message: `${entity} actualizada correctamente`,
+            message: `Programación actualizada correctamente`,
             data: actualizada
         });
 
     } catch (error) {
         if (transaction) await transaction.rollback();
         console.error("Error en updateProgramacion:", error);
-        handleHttpError(res, `No se pudo actualizar ${entity}`);
+        handleHttpError(res, `No se pudo actualizar Programación`);
     }
 };
 

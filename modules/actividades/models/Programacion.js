@@ -76,12 +76,12 @@ const Programacion = db.define('Programaciones', {
 });
 
 // Hook afterCreate para actualizar el campo programacion con el id generado
-Programacion.afterCreate(async (instance) => {
-    if (instance.signo === 1) {
-        instance.programacion = instance.id;
-        await instance.save();  // Guarda la actualización en la base de datos
-    }
-});
+// Programacion.afterCreate(async (instance) => {
+//     if (instance.signo === 1) {
+//         instance.programacion = instance.id;
+//         await instance.save();  // Guarda la actualización en la base de datos
+//     }
+// });
 
 
 export default Programacion;
