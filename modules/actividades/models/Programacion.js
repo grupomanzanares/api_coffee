@@ -32,7 +32,8 @@ const Programacion = db.define('Programaciones', {
     },
     cantidad: {
         type: DataTypes.NUMERIC(16, 2),
-        allowNull: false
+        allowNull: false,
+        defaultValue : 0
     },
     habilitado: {
         type: DataTypes.BOOLEAN,

@@ -15,7 +15,8 @@ const validateCreateProgramacion = [
         .custom(value => value >= 0).withMessage('El jornal no puede ser negativo'),
     body('cantidad')
         .optional()
-        .isNumeric().withMessage('La cantidad debe ser un número válido'),
+        .isNumeric().withMessage('La cantidad debe ser un número válido')
+        .custom(value => value >= 0).withMessage('La cantidad debe ser mayor a cero o igual a cero'),
 
     body('sucursalId')
         .exists(),
