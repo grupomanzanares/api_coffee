@@ -173,9 +173,6 @@ const updateProgramacion = async (req, res) => {
                 const nuevosTrabajadores = trabajadores.map(t => ({
                     programacionId: id,
                     trabajadorId: t.trabajadorId,
-                    jornal: t.jornal,
-                    cantidad: t.cantidad,
-                    observacion: t.observacion,
                     usuario: programacionData.usuario,
                     usuarioMod: programacionData.usuarioMod
                 }));
