@@ -1,6 +1,6 @@
 
 
-import db from "../../config/db.js";
+import db from "../../../config/db.js";
 
 import ActCategoria from './ActCategoria.js';
 import ActSubCategoria from './ActSubCategoria.js';
