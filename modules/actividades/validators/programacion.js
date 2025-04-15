@@ -6,7 +6,7 @@ const validateCreateProgramacion = [
     body('lote')
         .optional()
         .isString().withMessage('El lote debe ser una cadena de texto')
-        .isLength({ max: 50 }).withMessage('El lote no puede exceder los 3 caracteres'),
+        .isLength({ max: 50 }).withMessage('El lote no puede exceder los 50 caracteres'),
     body('trabajador')
         .optional(),
     body('jornal')

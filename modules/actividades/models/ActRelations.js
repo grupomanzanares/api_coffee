@@ -1,3 +1,7 @@
+
+
+import db from "../../config/db.js";
+
 import ActCategoria from './ActCategoria.js';
 import ActSubCategoria from './ActSubCategoria.js';
 import Actividad from './Actividad.js';
@@ -8,6 +12,10 @@ import Programacion from './Programacion.js';
 import Estado from '../../administracion/models/Estado.js';
 import Prioridad from '../../administracion/models/Prioridad.js';
 import User from '../../../auth/models/User.js';
+import ProgramacionTrabajador from './ProgramacionTrabajador.js';
+
+
+const sequelize = db;
 
 
 // Relación: Una sucursal tiene muchas categorías
@@ -67,6 +75,12 @@ Prioridad.hasMany(Programacion, { foreignKey: 'prioridadId', as: 'programaciones
 
 
 
-export { Sucursal, ActCategoria, ActSubCategoria,Actividad};
+// Una programación puede tener muchos trabajadores
+Programacion.hasMany(ProgramacionTrabajador, { foreignKey: 'programacionId',  as: 'trabajadores'});
 
-// hola
+// Un trabajador asignado pertenece a una programación
+ProgramacionTrabajador.belongsTo(Programacion, { foreignKey: 'programacionId',  as: 'programacion'});
+
+
+export {sequelize, Sucursal, ActCategoria, ActSubCategoria,Actividad, ProgramacionTrabajador};
+

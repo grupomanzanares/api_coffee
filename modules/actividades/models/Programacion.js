@@ -25,6 +25,7 @@ const Programacion = db.define('Programaciones', {
         type: DataTypes.INTEGER,
         allowNull: true
     },
+
     jornal: {
         type: DataTypes.NUMERIC(16, 2),
         allowNull: true
@@ -54,7 +55,7 @@ const Programacion = db.define('Programaciones', {
 
     signo: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     
     maquina: {
