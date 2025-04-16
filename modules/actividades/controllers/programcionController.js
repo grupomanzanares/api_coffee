@@ -102,7 +102,7 @@ const createProgramacion = async (req, res) => {
         // Asigna el mismo ID si signo === 1
         if (nuevaProgramacion.signo === 1) {
             await Programacion.update(
-                { programacion: nuevaProgramacion.id },
+                { id: nuevaProgramacion.id },
                 { where: { id }, transaction }
             );
         }

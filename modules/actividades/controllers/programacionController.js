@@ -99,11 +99,12 @@ const createProgramacion = async (req, res) => {
 
         const nuevaProgramacion = await Programacion.create(programacionData, { transaction });
 
+        console.log  ("idprogramacion", nuevaProgramacion.id)
         // Asigna el mismo ID si signo === 1
         if (nuevaProgramacion.signo === 1) {
             await Programacion.update(
                 { programacion: nuevaProgramacion.id },
-                { where: { id }, transaction }
+                { where: { id: nuevaProgramacion.id }, transaction }
             );
         }
 
