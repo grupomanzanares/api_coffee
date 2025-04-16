@@ -1,5 +1,5 @@
 import express from 'express';
-import { getProgramacion,  deleteProgramacion, updateProgramacion, createProgramacion, getProgramaciones } from '../controllers/programcionController.js';
+import { getProgramacion,  deleteProgramacion, updateProgramacion, createProgramacion, getProgramaciones } from '../controllers/programacionController.js';
 import { apiAuth } from '../../../auth/middleware/apiauth.js';
 import { validateCreateProgramacion, validateGetProgramacion } from '../validators/programacion.js';
 

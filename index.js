@@ -25,6 +25,7 @@ import ActividadRoutes from './modules/actividades/routes/ActividadRoutes.js';
 
 import ProgramacionRoutes from './modules/actividades/routes/ProgramacionRoutes.js';
 
+import ProgramacionTrabajadoresRoutes from './modules/actividades/routes/ProgramacionTrabajadoresRoutes.js';
 
 import tipoContratoRoutes from './routes/tipoContratoRoutes.js'
 import tipoIdentificacionRoutes from './routes/tipoIdentificacionRoutes.js'
@@ -89,6 +90,7 @@ app.use('/estado', estadoRoutes)
 app.use('/prioridad', prioridadRoutes)
 app.use('/programacion', ProgramacionRoutes)
 app.use('/trabajador', trabajadorRoutes)
+app.use('/programacion_trabajadores', ProgramacionTrabajadoresRoutes)
 
 // kk
 app.use('/unidad', unidadRoutes)

@@ -249,11 +249,45 @@ const deleteProgramacion = async(req, res) =>{
 
 
 
+const setProgramacionTrabajadores = async (req, res) => {
+    let transaction;
+    try {
+        const { programacionId, trabajadores } = req.body;
+
+        transaction = await sequelize.transaction();
+
+        // Eliminar asociaciones existentes
+        await ProgramacionTrabajador.destroy({
+            where: { programacionId },
+            transaction
+        });
+
+        // Agregar nuevas asociaciones
+        if (Array.isArray(trabajadores) && trabajadores.length > 0) {
+            const nuevosTrabajadores = trabajadores.map(t => ({
+                programacionId,
+                trabajadorId: t.trabajadorId,
+                usuario: t.usuario,
+                usuarioMod: t.usuarioMod
+            }));
+            await ProgramacionTrabajador.bulkCreate(nuevosTrabajadores, { transaction });
+        }
+
+        await transaction.commit();
+        res.status(200).json({ message: 'Asociaciones de trabajadores actualizadas correctamente.' });
+
+    } catch (error) {
+        if (transaction) await transaction.rollback();
+        console.error("Error en updateProgramacionTrabajadores:", error);
+        res.status(500).json({ message: 'Error al actualizar asociaciones de trabajadores.' });
+    }
+};
 
 export{
     getProgramaciones,
     getProgramacion,
     createProgramacion,
     deleteProgramacion,
-    updateProgramacion
+    updateProgramacion,
+    setProgramacionTrabajadores
 }
