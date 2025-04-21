@@ -15,14 +15,6 @@ const ProgramacionTrabajador = db.define('programacion_trabajadores', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    usuario: {
-        type: DataTypes.STRING(50),
-        allowNull: true
-    },
-    usuarioMod: {
-        type: DataTypes.STRING(50),
-        allowNull: true
-    },
     sincronizado: {
         type: DataTypes.BOOLEAN,
         allowNull: true,

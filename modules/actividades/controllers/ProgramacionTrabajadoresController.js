@@ -74,6 +74,7 @@ const setProgramacionTrabajadores = async (req, res) => {
     let transaction;
     try {
         const { programacionId, trabajadores } = req.body;
+        const fechaActual = new Date();
 
         transaction = await sequelize.transaction();
 
@@ -89,7 +90,9 @@ const setProgramacionTrabajadores = async (req, res) => {
                 programacionId,
                 trabajadorId: t.trabajadorId,
                 usuario: t.usuario,
-                usuarioMod: t.usuarioMod
+                usuarioMod: t.usuarioMod,
+                sincronizado: true, // Campo actualizado
+                fecSincronizacion: fechaActual // Campo actualizado
             }));
             await ProgramacionTrabajador.bulkCreate(nuevosTrabajadores, { transaction });
         }

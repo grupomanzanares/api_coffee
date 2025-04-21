@@ -111,9 +111,7 @@ const createProgramacion = async (req, res) => {
         if (Array.isArray(trabajadores) && trabajadores.length > 0) {
             const datosTrabajadores = trabajadores.map(t => ({
                 programacionId: nuevaProgramacion.id,
-                trabajadorId: t.trabajadorId,
-                usuario: programacionData.usuario,
-                usuarioMod: programacionData.usuarioMod
+                trabajadorId: t.trabajadorId
             }));
             await ProgramacionTrabajador.bulkCreate(datosTrabajadores, { transaction });
         }
