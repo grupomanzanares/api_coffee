@@ -13,6 +13,7 @@ import Estado from '../../administracion/models/Estado.js';
 import Prioridad from '../../administracion/models/Prioridad.js';
 import User from '../../../auth/models/User.js';
 import ProgramacionTrabajador from './ProgramacionTrabajador.js';
+import Trabajador from "../../../models/Trabajador.js";
 
 
 const sequelize = db;
@@ -82,5 +83,7 @@ Programacion.hasMany(ProgramacionTrabajador, { foreignKey: 'programacionId',  as
 ProgramacionTrabajador.belongsTo(Programacion, { foreignKey: 'programacionId',  as: 'programacion'});
 
 
-export {sequelize, Sucursal, ActCategoria, ActSubCategoria,Actividad, ProgramacionTrabajador};
+ProgramacionTrabajador.belongsTo(Trabajador, { foreignKey: 'trabajadorId', as: 'trabajador', });
+
+export {sequelize, Sucursal, ActCategoria, ActSubCategoria,Actividad, ProgramacionTrabajador, Trabajador};
 

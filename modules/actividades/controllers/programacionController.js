@@ -1,11 +1,12 @@
 import { matchedData } from "express-validator";
 import { handleHttpError } from "../../../helpers/httperror.js";
 import Programacion from "../models/Programacion.js";
-import { sequelize, Actividad, Sucursal, ProgramacionTrabajador } from "../models/ActRelations.js";
+import { sequelize, Actividad, Sucursal, ProgramacionTrabajador,Trabajador } from "../models/ActRelations.js";
 import User from "../../../auth/models/User.js";
 import Prioridad from "../../administracion/models/Prioridad.js";
 import Estado from "../../administracion/models/Estado.js";
 import Finca from "../../../models/Finca.js";
+
 
 
 const entity = "Programacion"
@@ -39,6 +40,18 @@ const getProgramaciones = async (req, res) =>{
                 {
                     model: Actividad, as: 'actividad',
                     attributes: ["nombre"]
+                },
+
+                {
+                    model: ProgramacionTrabajador,
+                    as: 'trabajadores',
+                    include: [
+                        {
+                        model: Trabajador,
+                        as: 'trabajador',
+                        attributes: ['id', 'nombre'],
+                        },
+                    ],
                 },
             ],
 
