@@ -41,19 +41,18 @@ const getProgramaciones = async (req, res) =>{
                     model: Actividad, as: 'actividad',
                     attributes: ["nombre"]
                 },
-
                 {
                     model: ProgramacionTrabajador,
                     as: 'trabajadores',
                     attributes: [],
                     include: [
                         {
-                        model: Trabajador,
-                        as: 'trabajador',
-                        attributes: ['id', 'nit', 'nombre'],
-                        },
-                    ],
-                },
+                            model: Trabajador,
+                            as: 'trabajador',
+                            attributes: ['id', 'nit', 'nombre']
+                        }
+                    ]
+                }
             ],
 
 
