@@ -61,7 +61,7 @@ const getProgramaciones = async (req, res) =>{
 
           // Transformar la estructura para que 'trabajadores' sea un arreglo de objetos con id, nit y nombre
         const resultado = registros.map(programacion => {
-            const trabajadores = programacion.trabajadores.map(pt => pt.trabajador);
+            const trabajadores = programacion.trabajadores?.map(pt => pt.trabajador) || [];
             return {
             ...programacion.toJSON(),
             trabajadores
