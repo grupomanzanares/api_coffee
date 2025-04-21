@@ -67,7 +67,7 @@ const getProgramaciones = async (req, res) =>{
             trabajadores
             };
         });
-        res.json(registros)
+        res.json(resultado)
     }catch{
         handleHttpError(res, `No se pudo cargar ${entity} s` ); 
     }
