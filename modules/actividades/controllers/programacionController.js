@@ -49,7 +49,7 @@ const getProgramaciones = async (req, res) =>{
                         {
                         model: Trabajador,
                         as: 'trabajador',
-                        attributes: ['id', 'nombre'],
+                        attributes: ['id', 'nit', 'nombre'],
                         },
                     ],
                 },
