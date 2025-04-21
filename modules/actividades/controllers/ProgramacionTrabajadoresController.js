@@ -69,6 +69,8 @@ const deleteProgramacionTrabajador = async(req, res) =>{
 
 
 const setProgramacionTrabajadores = async (req, res) => {
+
+    console.log("ingresando a setProgramacionTrabajadores", req.body)
     let transaction;
     try {
         const { programacionId, trabajadores } = req.body;

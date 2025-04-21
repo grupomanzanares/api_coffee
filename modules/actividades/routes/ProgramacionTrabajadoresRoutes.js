@@ -10,8 +10,8 @@ const router = express.Router();
 
 router.get('/', apiAuth, getProgramacionTrabajadores)
 router.get('/:id', apiAuth, getProgramacionTrabajador)
-router.post('/create', apiAuth,  setProgramacionTrabajadores)
-router.put('/:id', apiAuth,  setProgramacionTrabajadores)
+// router.post('/create', apiAuth,  setProgramacionTrabajadores)
+router.put('/:programacionId', apiAuth,  setProgramacionTrabajadores)
 router.delete('/delete/:id',  apiAuth, deleteProgramacionTrabajador)
 
 

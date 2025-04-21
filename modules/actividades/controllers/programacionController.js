@@ -160,6 +160,8 @@ const updateProgramacion = async (req, res) => {
             );
         }
 
+        
+
         // Actualizar trabajadores si se reciben
         if (Array.isArray(trabajadores)) {
             await ProgramacionTrabajador.destroy({
