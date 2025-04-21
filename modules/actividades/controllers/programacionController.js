@@ -44,7 +44,6 @@ const getProgramaciones = async (req, res) =>{
                 {
                     model: ProgramacionTrabajador,
                     as: 'trabajadores',
-                    attributes: [],
                     include: [
                         {
                             model: Trabajador,
