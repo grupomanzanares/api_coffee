@@ -11,64 +11,69 @@ import Finca from "../../../models/Finca.js";
 
 const entity = "Programacion"
 
-const getProgramaciones = async (req, res) =>{
+const getProgramaciones = async (req, res) => {
     try {
         const registros = await Programacion.findAll({
-            where: {habilitado: true},
+            where: { habilitado: true },
             include: [
+            {
+                model: Sucursal,
+                as: 'sucursal',
+                attributes: ['nombre']
+            },
+            {
+                model: User,
+                as: 'responsable',
+                attributes: ['name']
+            },
+            {
+                model: Prioridad,
+                as: 'prioridad',
+                attributes: ['nombre']
+            },
+            {
+                model: Estado,
+                as: 'estado',
+                attributes: ['nombre']
+            },
+            {
+                model: Finca,
+                as: 'finca',
+                attributes: ['nombre']
+            },
+            {
+                model: Actividad,
+                as: 'actividad',
+                attributes: ['nombre']
+            },
+            {
+                model: ProgramacionTrabajador,
+                as: 'trabajadores',
+                attributes: [], // No necesitamos atributos de la tabla intermedia
+                include: [
                 {
-                    model: Sucursal, as: 'sucursal',
-                    attributes: ["nombre"]
-                },
-                {
-                    model: User, as: 'responsable',
-                    attributes: ["name"]
-                },
-                {
-                    model: Prioridad, as: 'prioridad',
-                    attributes: ["nombre"]
-                },
-
-                {
-                    model: Estado, as: 'estado',
-                    attributes: ["nombre"]
-                },
-                {
-                    model: Finca, as: 'finca',
-                    attributes: ["nombre"]
-                },
-                {
-                    model: Actividad, as: 'actividad',
-                    attributes: ["nombre"]
-                },
-                {
-                    model: ProgramacionTrabajador,
-                    as: 'trabajadores',
-                    attributes: [],
-                    include: [
-                        {
-                            model: Trabajador,
-                            as: 'trabajador',
-                            attributes: ['id', 'nit', 'nombre']
-                        }
-                    ]
+                    model: Trabajador,
+                    as: 'trabajador',
+                    attributes: ['id', 'nit', 'nombre']
                 }
-            ],
+                ]
+            }
+            ]
+    });
 
 
-        });
-
-
-          // Transformar la estructura para que 'trabajadores' sea un arreglo de objetos con id, nit y nombre
-        const resultado = registros.map(programacion => {
+        // Transformar la respuesta para incluir solo los trabajadores necesarios
+        const registrosTransformados = registros.map(programacion => {
             const trabajadores = programacion.trabajadores.map(pt => pt.trabajador);
             return {
             ...programacion.toJSON(),
             trabajadores
             };
         });
-        res.json(resultado)
+    
+        res.json(registrosTransformados);
     }catch{
+        console.error('Error al obtener programaciones:', error);
         handleHttpError(res, `No se pudo cargar ${entity} s` ); 
     }
 }
