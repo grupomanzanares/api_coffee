@@ -42,6 +42,7 @@ import consecutivoRoutes from './routes/consecutivoRoutes.js'
 import maquinaRoutes from './routes/maquinaRoutes.js'
 import trabajadorRoutes from './routes/trabajadorRoutes.js'
 import rolRoutes from './auth/routes/rolRoutes.js'
+import coffeeTraceRoutes   from './modules/coffee/coffeeTraceRoutes.js'
 
 /*** Crear app   */
 const app = express();
@@ -95,6 +96,11 @@ app.use('/programacion_trabajadores', ProgramacionTrabajadoresRoutes)
 // kk
 app.use('/unidad', unidadRoutes)
 app.use('/rol', rolRoutes)
+
+
+/**  Rutas de coffee Trace */
+app.use('/coffetrace', coffeeTraceRoutes)
+
 
 /***
  * Configurar puerto y levantar servidor....
