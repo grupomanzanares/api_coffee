@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', apiAuth, getCoffeTrace)
 router.post('/create', apiAuth, validateCreateCofeeTrace, createCoffeTrace)
-
+router.post('/create-cosecha/:cosecha', apiAuth, validateCreateCofeeTrace, createCoffeTrace)
 
 
 
