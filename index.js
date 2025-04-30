@@ -99,7 +99,7 @@ app.use('/rol', rolRoutes)
 
 
 /**  Rutas de coffee Trace */
-app.use('/coffetrace', coffeeTraceRoutes)
+app.use('/coffeetrace', coffeeTraceRoutes)
 
 
 /***
