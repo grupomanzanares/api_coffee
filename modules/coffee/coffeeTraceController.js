@@ -28,6 +28,8 @@ const createCoffeTrace_ = async (req, res) => {
 
 
 const createCoffeTrace = async (req, res) => {
+
+    console.log(req.body)
     try {
         const { cosecha } = req.params;
         const data = req.body;
