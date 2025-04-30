@@ -10,6 +10,8 @@ const apiAuth = (req, res, next) =>{
     }
     const token = authHeader.split(' ')[1];
 try { 
+
+    
         const decoded = jwt.verify(token,  process.env.JWT_SECRET) 
         req.user = decoded; // Adjunta datos decodificados al request
 
@@ -21,6 +23,10 @@ try {
 
         next();
     } catch (error) {
+
+        console.log("HEADER AUTH:", req.headers['authorization']);
+        console.log("TOKEN EXTRAÍDO:", token);
+
         if (error.name === 'TokenExpiredError') {
             return handleHttpError(res, 'El token ha expirado.', 401);
         } else if (error.name === 'JsonWebTokenError') {
