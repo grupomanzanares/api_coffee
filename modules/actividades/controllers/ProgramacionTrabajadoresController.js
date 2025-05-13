@@ -79,10 +79,12 @@ const setProgramacionTrabajadores = async (req, res) => {
         transaction = await sequelize.transaction();
 
         // Eliminar asociaciones existentes
-        await ProgramacionTrabajador.destroy({
+        console.log("Eliminando registros de ProgramacionTrabajador con programacionId:", programacionId)
+        const cantidadEliminada = await ProgramacionTrabajador.destroy({
             where: { programacionId },
             transaction
         });
+        console.log(`Registros eliminados: ${cantidadEliminada}`);
 
         // Agregar nuevas asociaciones
         if (Array.isArray(trabajadores) && trabajadores.length > 0) {
