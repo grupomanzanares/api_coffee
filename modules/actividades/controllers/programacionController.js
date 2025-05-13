@@ -44,7 +44,6 @@ const getProgramaciones = async (req, res) =>{
                 {
                     model: ProgramacionTrabajador,
                     as: 'trabajadores',
-                    attributes: ['programacionId', 'trabajadorId', 'sincronizado', 'fecSincronizacion'],
                     include: [
                         {
                             model: Trabajador,
