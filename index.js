@@ -42,13 +42,13 @@ import consecutivoRoutes from './routes/consecutivoRoutes.js'
 import maquinaRoutes from './routes/maquinaRoutes.js'
 import trabajadorRoutes from './routes/trabajadorRoutes.js'
 import rolRoutes from './auth/routes/rolRoutes.js'
-import coffeeTraceRoutes   from './modules/coffee/coffeeTraceRoutes.js'
+import coffeeTraceRoutes from './modules/coffee/coffeeTraceRoutes.js'
 
 /*** Crear app   */
 const app = express();
 
 /*** Habilitar CORS para todas las rutas   */
-app.use(cors());  
+app.use(cors());
 
 // Habilitar express.json para parsear JSON
 /*** Conexión a la base de datos y eliminación de índices duplicados  */
@@ -104,7 +104,7 @@ app.use('/coffeetrace', coffeeTraceRoutes)
 
 /***
  * Configurar puerto y levantar servidor....
- */  
+ */
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Escuchando en el puerto ${port}`);
@@ -114,5 +114,5 @@ app.listen(port, () => {
  * Ruta principal....
  */
 app.get('/', (req, res) => {
-  res.send("Bienvenidos a Grupo Empresarial Ganaderia Manzanares:  En Construccion...");
+  res.send("Grupo Manzanares SAS");
 });
