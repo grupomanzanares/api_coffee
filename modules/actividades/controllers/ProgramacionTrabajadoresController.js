@@ -69,19 +69,21 @@ const deleteProgramacionTrabajador = async(req, res) =>{
 
 
 const setProgramacionTrabajadores = async (req, res) => {
-
     console.log("ingresando a setProgramacionTrabajadores", req.body)
     let transaction;
     try {
-        const { programacionId, trabajadores } = req.body;
+        const { trabajadores } = req.body;
         const fechaActual = new Date();
+
+        // Obtener todos los programacionId únicos del array de trabajadores
+        const programacionIds = [...new Set(trabajadores.map(t => t.programacionId))];
 
         transaction = await sequelize.transaction();
 
-        // Eliminar asociaciones existentes
-        console.log("Eliminando registros de ProgramacionTrabajador con programacionId:", programacionId)
+        // Eliminar asociaciones existentes para todos los programacionId involucrados
+        console.log("Eliminando registros de ProgramacionTrabajador con programacionIds:", programacionIds)
         const cantidadEliminada = await ProgramacionTrabajador.destroy({
-            where: { programacionId },
+            where: { programacionId: programacionIds },
             transaction
         });
         console.log(`Registros eliminados: ${cantidadEliminada}`);
@@ -89,12 +91,12 @@ const setProgramacionTrabajadores = async (req, res) => {
         // Agregar nuevas asociaciones
         if (Array.isArray(trabajadores) && trabajadores.length > 0) {
             const nuevosTrabajadores = trabajadores.map(t => ({
-                programacionId,
+                programacionId: t.programacionId, // Usar el programacionId de cada trabajador
                 trabajadorId: t.trabajadorId,
                 usuario: t.usuario,
                 usuarioMod: t.usuarioMod,
-                sincronizado: true, // Campo actualizado
-                fecSincronizacion: fechaActual // Campo actualizado
+                sincronizado: true,
+                fecSincronizacion: fechaActual
             }));
             await ProgramacionTrabajador.bulkCreate(nuevosTrabajadores, { transaction });
         }
