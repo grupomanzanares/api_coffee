@@ -114,5 +114,18 @@ app.listen(port, () => {
  * Ruta principal....
  */
 app.get('/', (req, res) => {
-  res.send("Grupo Manzanares SAS");
+  res.send(`
+    <html>
+      <head><title>Grupo Manzanares S.A.S.</title></head>
+      <body style="font-family: sans-serif; padding: 2rem;">
+        <h1>Grupo Manzanares S.A.S.</h1>
+        <p>Vereda Río Frío, Anillo Vial Girón–Floridablanca, Km 2, Finca El Cerro</p>
+        <p>Floridablanca, Santander, Colombia</p>
+        <p>Tel: +57 320 4494890</p>
+        <p>Email: tics@gmanzanares.com</p>
+        <p>NIT: 8001685338</p>
+        <p>Empresa dedicada al beneficio animal, producción ganadera y comercialización de productos agroindustriales.</p>
+      </body>
+    </html>
+  `);
 });
