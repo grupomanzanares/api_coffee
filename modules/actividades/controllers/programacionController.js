@@ -308,13 +308,18 @@ const setProgramacionTrabajadores = async (req, res) => {
 
 const getProgramacionesRecientes = async (req, res) => {
     try {
+        const { responsableId } = req.query;
         const fechaLimite = new Date();
         fechaLimite.setDate(fechaLimite.getDate() - 60);
+        const where = {
+            habilitado: true,
+            fecha: { [Op.gte]: fechaLimite }
+        };
+        if (responsableId) {
+            where.responsableId = responsableId;
+        }
         const registros = await Programacion.findAll({
-            where: {
-                habilitado: true,
-                fecha: { [Op.gte]: fechaLimite }
-            },
+            where,
             include: [
                 {
                     model: Sucursal, as: 'sucursal',
