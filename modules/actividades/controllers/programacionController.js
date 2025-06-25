@@ -6,6 +6,7 @@ import User from "../../../auth/models/User.js";
 import Prioridad from "../../administracion/models/Prioridad.js";
 import Estado from "../../administracion/models/Estado.js";
 import Finca from "../../../models/Finca.js";
+import { Op } from 'sequelize';
 
 
 
@@ -53,12 +54,8 @@ const getProgramaciones = async (req, res) =>{
                     ]
                 }
             ],
-
-
         });
-
-
-          // Transformar la estructura para que 'trabajadores' sea un arreglo de objetos con id, nit y nombre
+        // Transformar la estructura para que 'trabajadores' sea un arreglo de objetos con id, nit y nombre
         const resultado = registros.map(programacion => {
             const trabajadores = programacion.trabajadores?.map(pt => pt.trabajador) || [];
             return {
@@ -309,11 +306,73 @@ const setProgramacionTrabajadores = async (req, res) => {
     }
 };
 
+const getProgramacionesRecientes = async (req, res) => {
+    try {
+        const fechaLimite = new Date();
+        fechaLimite.setDate(fechaLimite.getDate() - 60);
+        const registros = await Programacion.findAll({
+            where: {
+                habilitado: true,
+                fecha: { [Op.gte]: fechaLimite }
+            },
+            include: [
+                {
+                    model: Sucursal, as: 'sucursal',
+                    attributes: ["nombre"]
+                },
+                {
+                    model: User, as: 'responsable',
+                    attributes: ["name"]
+                },
+                {
+                    model: Prioridad, as: 'prioridad',
+                    attributes: ["nombre"]
+                },
+                {
+                    model: Estado, as: 'estado',
+                    attributes: ["nombre"]
+                },
+                {
+                    model: Finca, as: 'finca',
+                    attributes: ["nombre"]
+                },
+                {
+                    model: Actividad, as: 'actividad',
+                    attributes: ["nombre"]
+                },
+                {
+                    model: ProgramacionTrabajador,
+                    as: 'trabajadores',
+                    include: [
+                        {
+                            model: Trabajador,
+                            as: 'trabajador',
+                            attributes: ['id', 'nit', 'nombre']
+                        }
+                    ]
+                }
+            ],
+        });
+        const resultado = registros.map(programacion => {
+            const trabajadores = programacion.trabajadores?.map(pt => pt.trabajador) || [];
+            return {
+                ...programacion.toJSON(),
+                trabajadores
+            };
+        });
+        res.json(resultado);
+    } catch (error) {
+        console.error('Error al obtener programaciones recientes:', error);
+        handleHttpError(res, `No se pudo cargar ${entity} recientes`);
+    }
+};
+
 export{
     getProgramaciones,
     getProgramacion,
     createProgramacion,
     deleteProgramacion,
     updateProgramacion,
-    setProgramacionTrabajadores
+    setProgramacionTrabajadores,
+    getProgramacionesRecientes
 }
