@@ -115,16 +115,44 @@ app.listen(port, () => {
  */
 app.get('/', (req, res) => {
   res.send(`
-    <html>
-      <head><title>Grupo Manzanares S.A.S.</title></head>
-      <body style="font-family: sans-serif; padding: 2rem;">
-        <h1>Grupo Manzanares S.A.S.</h1>
-        <p>Vereda Río Frío, Anillo Vial Girón–Floridablanca, Km 2, Finca El Cerro</p>
-        <p>Floridablanca, Santander, Colombia</p>
-        <p>Tel: +57 320 4494890</p>
-        <p>Email: tics@gmanzanares.com</p>
-        <p>NIT: 8001685338</p>
-        <p>Empresa dedicada al beneficio animal, producción ganadera y comercialización de productos agroindustriales.</p>
+    <html lang="es">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Grupo Manzanares S.A.S.</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 40px;
+            color: #333;
+          }
+          .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          }
+          h1 {
+            color: #2a5d84;
+          }
+          p {
+            margin: 10px 0;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h1>Grupo Manzanares S.A.S.</h1>
+          <p><strong>Dirección:</strong> Vereda Río Frío, Anillo Vial Girón–Floridablanca, Km 2, Finca El Cerro</p>
+          <p><strong>Ciudad:</strong> Floridablanca, Santander, Colombia</p>
+          <p><strong>Teléfono:</strong> +57 320 4494890</p>
+          <p><strong>Email:</strong> tics@gmanzanares.com</p>
+          <p><strong>NIT:</strong> 8001685338</p>
+          <p><strong>Actividad económica:</strong> Empresa dedicada al beneficio animal, producción ganadera y comercialización de productos agroindustriales.</p>
+        </div>
       </body>
     </html>
   `);
