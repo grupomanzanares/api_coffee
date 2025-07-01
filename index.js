@@ -122,11 +122,25 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/', (req, res) => {
   res.send(`
+    <!DOCTYPE html>
     <html lang="es">
       <head>
         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Meta básica -->
         <title>Grupo Manzanares S.A.S.</title>
+        <meta name="description" content="Grupo Manzanares S.A.S. es una empresa dedicada al beneficio animal, producción ganadera y comercialización de productos agroindustriales en Santander, Colombia.">
+        <meta name="author" content="Grupo Manzanares S.A.S.">
+
+        <!-- Open Graph para Facebook / Meta -->
+        <meta property="og:title" content="Grupo Manzanares S.A.S." />
+        <meta property="og:type" content="business.business" />
+        <meta property="og:url" content="https://gmanzanares.com.co" />
+        <meta property="og:description" content="Empresa dedicada al beneficio animal, producción ganadera y comercialización de productos agroindustriales." />
+        <meta property="og:locale" content="es_CO" />
+
         <style>
           body {
             font-family: Arial, sans-serif;
