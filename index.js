@@ -113,6 +113,13 @@ app.listen(port, () => {
 /***
  * Ruta principal....
  */
+
+
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send('User-Agent: FacebookBot\nCrawl-delay: 5');
+});
+
 app.get('/', (req, res) => {
   res.send(`
     <html lang="es">
